@@ -1,0 +1,51 @@
+[
+  {
+    "career_id": "software-engineer",
+    "title": "Software Engineer",
+    "cluster_weights": {
+      "programming": 0.35,
+      "project": 0.25,
+      "systems": 0.2,
+      "theory": 0.1,
+      "ux": 0.1
+    },
+    "recommended_courses": ["COSC2P90", "COSC2P91", "COSC3P32", "COSC4P90"],
+    "notes": "MVP pathway template only; verify employer and program requirements."
+  },
+  {
+    "career_id": "data-analyst",
+    "title": "Data Analyst",
+    "cluster_weights": {
+      "data": 0.4,
+      "math": 0.3,
+      "programming": 0.2,
+      "theory": 0.1
+    },
+    "recommended_courses": ["STAT1P98", "COSC2P95", "COSC4P32", "COSC4P76"],
+    "notes": "MVP pathway template only; verify with current industry expectations."
+  },
+  {
+    "career_id": "ml-engineer",
+    "title": "Machine Learning Engineer",
+    "cluster_weights": {
+      "ai": 0.35,
+      "data": 0.25,
+      "math": 0.2,
+      "programming": 0.2
+    },
+    "recommended_courses": ["COSC3P71", "COSC4P76", "COSC3P03", "STAT1P98"],
+    "notes": "MVP pathway template only; verify with current industry expectations."
+  },
+  {
+    "career_id": "security-analyst",
+    "title": "Security Analyst",
+    "cluster_weights": {
+      "systems": 0.45,
+      "theory": 0.25,
+      "programming": 0.2,
+      "project": 0.1
+    },
+    "recommended_courses": ["COSC3P32", "COSC4P80", "COSC4P14"],
+    "notes": "MVP pathway template only; verify with current industry expectations."
+  }
+]

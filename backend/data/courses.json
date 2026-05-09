@@ -1,0 +1,221 @@
+[
+  {
+    "code": "COSC1P02",
+    "title": "Introduction to Computer Science I",
+    "credits": 0.5,
+    "clusters": ["programming"],
+    "tags": ["programming", "foundational"],
+    "prerequisites": { "requires_all": [], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC1P03",
+    "title": "Introduction to Computer Science II",
+    "credits": 0.5,
+    "clusters": ["programming", "theory"],
+    "tags": ["programming", "foundational"],
+    "prerequisites": { "requires_all": ["COSC1P02"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC1P50",
+    "title": "Introduction to Discrete Structures",
+    "credits": 0.5,
+    "clusters": ["math", "theory"],
+    "tags": ["math-heavy", "theory"],
+    "prerequisites": { "requires_all": [], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "MATH1P97",
+    "title": "Calculus I",
+    "credits": 0.5,
+    "clusters": ["math"],
+    "tags": ["math-heavy", "foundational"],
+    "prerequisites": { "requires_all": [], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "MATH1P98",
+    "title": "Calculus II",
+    "credits": 0.5,
+    "clusters": ["math"],
+    "tags": ["math-heavy"],
+    "prerequisites": { "requires_all": ["MATH1P97"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "STAT1P98",
+    "title": "Introduction to Statistics",
+    "credits": 0.5,
+    "clusters": ["data", "math"],
+    "tags": ["statistics", "data"],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [["MATH1P97", "MATH1P98"]],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC2P03",
+    "title": "Data Structures",
+    "credits": 0.5,
+    "clusters": ["programming", "theory"],
+    "tags": ["programming", "algorithms"],
+    "prerequisites": { "requires_all": ["COSC1P03"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC2P05",
+    "title": "Programming Languages",
+    "credits": 0.5,
+    "clusters": ["programming", "theory"],
+    "tags": ["programming", "theory"],
+    "prerequisites": { "requires_all": ["COSC2P03"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC2P12",
+    "title": "Introduction to Computer Architecture",
+    "credits": 0.5,
+    "clusters": ["systems"],
+    "tags": ["systems", "hardware"],
+    "prerequisites": { "requires_all": ["COSC1P03"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC2P13",
+    "title": "Computer Systems",
+    "credits": 0.5,
+    "clusters": ["systems", "programming"],
+    "tags": ["systems", "project-heavy"],
+    "prerequisites": { "requires_all": ["COSC2P12"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC2P89",
+    "title": "Internet Technologies",
+    "credits": 0.5,
+    "clusters": ["programming", "systems", "ux"],
+    "tags": ["web", "project-heavy", "UX"],
+    "prerequisites": { "requires_all": ["COSC2P03"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC2P95",
+    "title": "Database Systems",
+    "credits": 0.5,
+    "clusters": ["data", "programming"],
+    "tags": ["data", "project-heavy"],
+    "prerequisites": {
+      "requires_all": ["COSC2P03"],
+      "requires_one_of": [["STAT1P98", "MATH1P98"]],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC2P90",
+    "title": "Software Engineering I",
+    "credits": 0.5,
+    "clusters": ["programming", "project"],
+    "tags": ["project-heavy", "programming"],
+    "prerequisites": { "requires_all": ["COSC2P03"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC2P91",
+    "title": "Software Engineering II",
+    "credits": 0.5,
+    "clusters": ["programming", "project"],
+    "tags": ["project-heavy", "programming"],
+    "prerequisites": { "requires_all": ["COSC2P90"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC3P03",
+    "title": "Algorithms",
+    "credits": 0.5,
+    "clusters": ["theory", "programming"],
+    "tags": ["algorithms", "theory", "math-heavy"],
+    "prerequisites": {
+      "requires_all": ["COSC2P03", "COSC1P50"],
+      "requires_one_of": [],
+      "coreq": [],
+      "min_grade_by_course": { "COSC2P03": 60 }
+    }
+  },
+  {
+    "code": "COSC3P32",
+    "title": "Operating Systems",
+    "credits": 0.5,
+    "clusters": ["systems", "programming"],
+    "tags": ["systems", "project-heavy"],
+    "prerequisites": { "requires_all": ["COSC2P13"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC3P71",
+    "title": "Introduction to Artificial Intelligence",
+    "credits": 0.5,
+    "clusters": ["ai", "theory", "data"],
+    "tags": ["AI", "theory", "data"],
+    "prerequisites": {
+      "requires_all": ["COSC2P03"],
+      "requires_one_of": [["COSC3P03", "STAT1P98"]],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P97",
+    "title": "Mobile and Pervasive Computing",
+    "credits": 0.5,
+    "clusters": ["programming", "systems", "ux"],
+    "tags": ["project-heavy", "UX", "systems"],
+    "prerequisites": { "requires_all": ["COSC2P89"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC3P98",
+    "title": "Human-Computer Interaction",
+    "credits": 0.5,
+    "clusters": ["ux", "project"],
+    "tags": ["UX", "project-heavy"],
+    "prerequisites": { "requires_all": ["COSC2P89"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC4P14",
+    "title": "Computer Networks",
+    "credits": 0.5,
+    "clusters": ["systems"],
+    "tags": ["systems", "networking"],
+    "prerequisites": { "requires_all": ["COSC2P13"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC4P32",
+    "title": "Advanced Database Systems",
+    "credits": 0.5,
+    "clusters": ["data", "programming"],
+    "tags": ["data", "project-heavy"],
+    "prerequisites": { "requires_all": ["COSC2P95"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC4P76",
+    "title": "Machine Learning",
+    "credits": 0.5,
+    "clusters": ["ai", "data", "math"],
+    "tags": ["AI", "data", "math-heavy"],
+    "prerequisites": {
+      "requires_all": ["COSC3P03", "STAT1P98"],
+      "requires_one_of": [["MATH1P98", "COSC3P71"]],
+      "coreq": []
+    },
+    "restricted_to": ["cs_major"]
+  },
+  {
+    "code": "COSC4P80",
+    "title": "Computer Security",
+    "credits": 0.5,
+    "clusters": ["systems", "theory"],
+    "tags": ["systems", "security"],
+    "prerequisites": { "requires_all": ["COSC3P32"], "requires_one_of": [], "coreq": [] }
+  },
+  {
+    "code": "COSC4P90",
+    "title": "Capstone Project",
+    "credits": 1.0,
+    "clusters": ["project", "programming"],
+    "tags": ["project-heavy"],
+    "prerequisites": {
+      "requires_all": ["COSC2P91"],
+      "requires_one_of": [["COSC3P32", "COSC2P95"]],
+      "coreq": ["COSC4P14"]
+    },
+    "restricted_to": ["cs_major", "combined_major"]
+  }
+]
