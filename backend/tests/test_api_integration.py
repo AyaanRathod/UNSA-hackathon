@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from dataclasses import replace
+
 from fastapi.testclient import TestClient
 
 from app import main as main_module
@@ -9,7 +11,12 @@ from app.models import DocumentChunk
 client = TestClient(main_module.app)
 
 
-def test_profile_analysis_contract_smoke():
+def test_profile_analysis_contract_smoke(monkeypatch):
+    monkeypatch.setattr(
+        main_module,
+        "settings",
+        replace(main_module.settings, pathwise_ai_rank_recommendations=False),
+    )
     payload = {
         "student_id": "judge-demo",
         "completed_courses": [{"code": "COSC1P02", "grade": 82, "confidence": 4, "enjoyment": "liked"}],
@@ -24,6 +31,7 @@ def test_profile_analysis_contract_smoke():
     assert "disclaimer" in body
     assert body["active_program_id"] == "pathwise-explore"
     assert "active_program_name" in body
+    assert body.get("ranking_source") == "deterministic"
 
 
 def test_parse_transcript_text_contract_smoke():

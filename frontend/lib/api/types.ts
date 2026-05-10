@@ -1,6 +1,7 @@
 export type EnjoymentValue = "liked" | "neutral" | "disliked";
 export type RecommendationLabel = "safe" | "stretch" | "risky";
 export type ConfidenceBadge = "high" | "medium" | "low";
+export type RankingSource = "deterministic" | "watsonx_rag";
 
 export interface CompletedCourseInput {
   code: string;
@@ -42,6 +43,7 @@ export interface RecommendationItem {
   tags?: string[];
   track_note?: string | null;
   polished_why?: string | null;
+  evidence_snippets?: string[];
 }
 
 export interface CareerMatchItem {
@@ -64,6 +66,7 @@ export interface AnalyzeProfileResponse {
   /** Present after analysis with catalog programs API (older cached payloads may omit). */
   active_program_id?: string;
   active_program_name?: string;
+  ranking_source?: RankingSource;
 }
 
 export interface CatalogProgramSummary {

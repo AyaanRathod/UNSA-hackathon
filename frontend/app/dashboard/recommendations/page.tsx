@@ -38,6 +38,11 @@ export default function RecommendationsPage() {
         ) : (
           <span className="meta muted"> Resubmit your profile to use catalog program tracks.</span>
         )}
+        {analysis.ranking_source === "watsonx_rag" ? (
+          <span className="meta muted"> · Ranked with IBM watsonx + calendar evidence (BM25 retrieval)</span>
+        ) : (
+          <span className="meta muted"> · Ranked by catalog rules (deterministic scores)</span>
+        )}
       </p>
 
       {analysis.unknown_courses.length > 0 && (
@@ -76,6 +81,16 @@ export default function RecommendationsPage() {
                 </p>
               ) : null}
               <p className="meta recommendation-rationale">{explain(item)}</p>
+              {item.evidence_snippets && item.evidence_snippets.length > 0 ? (
+                <details className="evidence-details">
+                  <summary className="meta">Calendar evidence used</summary>
+                  <ul className="evidence-list">
+                    {item.evidence_snippets.map((ex, i) => (
+                      <li key={`${item.course_code}-ev-${i}`}>{ex}</li>
+                    ))}
+                  </ul>
+                </details>
+              ) : null}
               <div className="hero-actions">
                 <StatusBadge value={item.label} />
                 <StatusBadge value={item.confidence_badge} />
