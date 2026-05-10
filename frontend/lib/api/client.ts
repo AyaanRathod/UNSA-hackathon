@@ -8,6 +8,7 @@ import type {
   StudyArtifactsResponse,
   StudyQaResponse,
   UploadedDocument,
+  EvaluateBlurtResponse,
 } from "@/lib/api/types";
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8000";
@@ -80,6 +81,7 @@ export const endpointAliases = {
   uploadDocuments: ["/api/study/ingest", "/api/study/upload", "/api/uploads"],
   generateArtifacts: ["/api/study/artifacts", "/api/study/generate"],
   askGroundedQuestion: ["/api/study/qa", "/api/study/question"],
+  evaluateBlurt: ["/api/study/evaluate-blurt"],
   frenchDemo: ["/api/i18n/french-demo", "/api/study/french-demo"],
   catalogPrograms: ["/api/catalog/programs"],
 } as const;
@@ -247,6 +249,15 @@ export const apiClient = {
       citations: (response.citations || []).map(mapCitation),
       warning: response.warning,
     };
+  },
+
+  async evaluateBlurt(payload: { blurt_text: string; session_id: string }): Promise<EvaluateBlurtResponse> {
+    const response = await requestWithFallback<EvaluateBlurtResponse>({
+      method: "POST",
+      pathCandidates: [...endpointAliases.evaluateBlurt],
+      body: payload,
+    });
+    return response;
   },
 
   async fetchFrenchDemo(): Promise<FrenchDemoResponse> {

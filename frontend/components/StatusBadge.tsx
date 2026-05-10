@@ -1,21 +1,18 @@
-import type { ConfidenceBadge, RecommendationLabel } from "@/lib/api/types";
+import React from "react";
 
-type BadgeValue = ConfidenceBadge | RecommendationLabel | "processing" | "ready" | "queued" | "local_only" | "error";
+export function StatusBadge({ value }: { value?: string }) {
+  if (!value) return null;
 
-const classByValue: Record<BadgeValue, string> = {
-  high: "badge success",
-  medium: "badge warning",
-  low: "badge muted",
-  safe: "badge success",
-  stretch: "badge warning",
-  risky: "badge danger",
-  processing: "badge warning",
-  ready: "badge success",
-  queued: "badge muted",
-  local_only: "badge muted",
-  error: "badge danger",
-};
+  const normalized = value.toLowerCase();
+  let colorClass = "muted";
 
-export function StatusBadge({ value }: { value: BadgeValue }) {
-  return <span className={classByValue[value]}>{value.replace("_", " ")}</span>;
+  if (["safe", "high", "ready", "success", "completed"].includes(normalized)) {
+    colorClass = "success";
+  } else if (["stretch", "medium", "processing", "warning", "queued"].includes(normalized)) {
+    colorClass = "warning";
+  } else if (["risky", "low", "error", "danger", "local_only"].includes(normalized)) {
+    colorClass = "danger";
+  }
+
+  return <span className={`badge ${colorClass}`}>{value.replace(/_/g, " ")}</span>;
 }

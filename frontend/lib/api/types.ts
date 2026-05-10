@@ -112,6 +112,13 @@ export interface StudyQaResponse {
   warning?: string;
 }
 
+export interface EvaluateBlurtResponse {
+  session_id: string;
+  feedback: string;
+  score: number;
+  warning?: string;
+}
+
 export interface FrenchDemoResponse {
   original_text: string;
   original_language: "fr";

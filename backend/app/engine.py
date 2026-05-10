@@ -96,7 +96,8 @@ def normalize_student_courses(profile: StudentProfileInput) -> tuple[list[Normal
             continue
 
         enjoyment_weight = ENJOYMENT_WEIGHTS[row.enjoyment]
-        mastery = _clamp((row.grade / 100.0) * (0.6 + (row.confidence / 25.0)) + (enjoyment_weight * 0.05))
+        # Significantly increase weight of confidence and enjoyment
+        mastery = _clamp((row.grade / 100.0) * (0.5 + (row.confidence / 10.0)) + (enjoyment_weight * 0.15))
         signal = NormalizedCourseSignal(
             code=code,
             grade=float(row.grade),
@@ -323,6 +324,12 @@ def analyze_profile(
     unknown_codes.extend(transfer_unknowns)
     unknown_codes = sorted(set(unknown_codes))
 
+    total_credits_completed = 0.0
+    for row in normalized_courses:
+        course_meta = course_index.get(row.code, {})
+        credits = float(course_meta.get("credits") or 0.5)
+        total_credits_completed += credits
+
     cluster_strengths = _compute_cluster_strengths(normalized_courses, course_index)
     sparse_history = len(normalized_courses) < 3
 
@@ -396,5 +403,7 @@ def analyze_profile(
         disclaimer="",
         active_program_id=active_program_id,
         active_program_name=active_program_name,
+        total_credits_completed=total_credits_completed,
+        total_credits_required=20.0,
         ranking_source="deterministic",
     )

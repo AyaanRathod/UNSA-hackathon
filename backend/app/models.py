@@ -177,6 +177,8 @@ class AnalyzeProfileResponse(BaseModel):
     disclaimer: str
     active_program_id: str
     active_program_name: str
+    total_credits_completed: float = 0.0
+    total_credits_required: float = 20.0
     ranking_source: RankingSource = "deterministic"
 
 
@@ -250,6 +252,18 @@ class GroundedAnswerResponse(BaseModel):
     session_id: str
     answer: str
     citations: list[Citation] = Field(default_factory=list)
+    warning: str | None = None
+
+
+class EvaluateBlurtRequest(BaseModel):
+    session_id: str = Field(min_length=1)
+    blurt_text: str = Field(min_length=1)
+
+
+class EvaluateBlurtResponse(BaseModel):
+    session_id: str
+    feedback: str
+    score: int  # 1-100 scale
     warning: str | None = None
 
 

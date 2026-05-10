@@ -3,12 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { apiClient } from "@/lib/api/client";
-import type {
-  CatalogProgramSummary,
-  CompletedCourseInput,
-  EnjoymentValue,
-  StudentProfileInput,
-} from "@/lib/api/types";
+import type { CatalogProgramSummary, CompletedCourseInput, EnjoymentValue, StudentProfileInput } from "@/lib/api/types";
 import { appStorage } from "@/lib/storage";
 
 interface CourseRow extends CompletedCourseInput {
@@ -16,371 +11,193 @@ interface CourseRow extends CompletedCourseInput {
 }
 
 function newRow(): CourseRow {
-  return {
-    id: crypto.randomUUID(),
-    code: "",
-    grade: "",
-    confidence: 3,
-    enjoyment: "neutral",
-    notes: "",
-    transfer: false,
-    counts_as: "",
-    repeat_attempt: false,
-  };
+  return { id: crypto.randomUUID(), code: "", grade: "", confidence: 3, enjoyment: "neutral", notes: "", transfer: false, counts_as: "", repeat_attempt: false };
 }
 
-const enjoymentOptions: EnjoymentValue[] = ["liked", "neutral", "disliked"];
-const supportedTranscriptTypes = ".pdf,.png,.jpg,.jpeg,.webp";
-
 const FALLBACK_PROGRAMS: CatalogProgramSummary[] = [
-  { program_id: "pathwise-explore", name: "All disciplines (eligible next courses)", institution: "Brock University", calendar_year: "2024-2025" },
+  { program_id: "pathwise-explore", name: "All disciplines (explore)", institution: "Brock University", calendar_year: "2024-2025" },
   { program_id: "brock-cs-bsc", name: "BSc Computer Science", institution: "Brock University", calendar_year: "2024-2025" },
-  {
-    program_id: "brock-business-bba",
-    name: "Bachelor of Business Administration (course universe)",
-    institution: "Brock University",
-    calendar_year: "2024-2025",
-  },
+  { program_id: "brock-business-bba", name: "Bachelor of Business Administration", institution: "Brock University", calendar_year: "2024-2025" },
 ];
 
 export default function AcademicProfilePage() {
   const router = useRouter();
+  const [step, setStep] = useState(1);
   const [studentId, setStudentId] = useState("");
   const [goals, setGoals] = useState("");
   const [programInterest, setProgramInterest] = useState("");
   const [programId, setProgramId] = useState("brock-cs-bsc");
   const [catalogPrograms, setCatalogPrograms] = useState<CatalogProgramSummary[]>(FALLBACK_PROGRAMS);
-  const [workloadPath, setWorkloadPath] = useState("");
   const [rows, setRows] = useState<CourseRow[]>([newRow()]);
   const [loading, setLoading] = useState(false);
   const [intakeBusy, setIntakeBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [intakeMessage, setIntakeMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const saved = appStorage.loadProfile();
-    if (saved?.program_id) {
-      setProgramId(saved.program_id);
+    if (saved?.program_id) setProgramId(saved.program_id);
+    if (saved?.student_id) setStudentId(saved.student_id);
+    if (saved?.goals?.[0]) setGoals(saved.goals[0]);
+    if (saved?.program_interest) setProgramInterest(saved.program_interest);
+    if (saved?.completed_courses?.length) {
+      setRows(saved.completed_courses.map(c => ({ ...c, id: crypto.randomUUID(), confidence: c.confidence || 3, enjoyment: c.enjoyment || "neutral", grade: c.grade || "" })));
     }
   }, []);
 
   useEffect(() => {
-    void apiClient
-      .listCatalogPrograms()
-      .then((rows) => {
-        if (rows?.length) {
-          setCatalogPrograms(rows);
-        }
-      })
-      .catch(() => {
-        setCatalogPrograms(FALLBACK_PROGRAMS);
-      });
+    void apiClient.listCatalogPrograms().then(res => res?.length && setCatalogPrograms(res)).catch(() => setCatalogPrograms(FALLBACK_PROGRAMS));
   }, []);
 
-  const canSubmit = useMemo(() => {
-    return studentId.trim().length > 0 && rows.some((row) => row.code.trim());
-  }, [studentId, rows]);
+  const canProceedStep1 = studentId.trim().length > 0;
+  const canSubmit = canProceedStep1 && rows.some((row) => row.code.trim());
 
   function updateRow(id: string, next: Partial<CourseRow>) {
-    setRows((prev) => prev.map((row) => (row.id === id ? { ...row, ...next } : row)));
+    setRows(prev => prev.map(row => row.id === id ? { ...row, ...next } : row));
   }
 
   function removeRow(id: string) {
-    setRows((prev) => (prev.length > 1 ? prev.filter((row) => row.id !== id) : prev));
-  }
-
-  function mergeRows(imported: CompletedCourseInput[]) {
-    if (!imported.length) {
-      return;
-    }
-    setRows((prev) => {
-      const byCode = new Map(prev.map((row) => [row.code.trim().toUpperCase(), row]));
-      for (const course of imported) {
-        const code = course.code.trim().toUpperCase();
-        const existing = byCode.get(code);
-        if (existing) {
-          byCode.set(code, {
-            ...existing,
-            grade: course.grade,
-            confidence: Number(course.confidence) || existing.confidence,
-            enjoyment: course.enjoyment || existing.enjoyment,
-            notes: course.notes || existing.notes,
-          });
-        } else {
-          byCode.set(code, {
-            id: crypto.randomUUID(),
-            code,
-            grade: course.grade,
-            confidence: Number(course.confidence) || 3,
-            enjoyment: course.enjoyment || "neutral",
-            notes: course.notes,
-            transfer: course.transfer || false,
-            counts_as: course.counts_as || "",
-            repeat_attempt: course.repeat_attempt || false,
-          });
-        }
-      }
-      const merged = Array.from(byCode.values());
-      return merged.length ? merged : [newRow()];
-    });
+    setRows(prev => prev.length > 1 ? prev.filter(r => r.id !== id) : prev);
   }
 
   async function handleTranscriptImport(file: File) {
     setIntakeBusy(true);
-    setIntakeMessage(null);
     setError(null);
     try {
       const parsed = await apiClient.parseTranscriptFile(file);
-
-      mergeRows(parsed.extracted_courses);
-      const rowCount = parsed.extracted_courses.length;
-      if (rowCount === 0) {
-        setIntakeMessage(parsed.warning || "No courses were extracted. Try a clearer transcript or edit manually.");
+      if (parsed.extracted_courses.length === 0) {
+        setError(parsed.warning || "No courses extracted. Please add manually.");
       } else {
-        setIntakeMessage(
-          `Imported ${rowCount} course row${rowCount === 1 ? "" : "s"} from ${parsed.source_name}. Review and adjust before submit.`,
-        );
+        const newRows = parsed.extracted_courses.map(c => ({
+          ...c, id: crypto.randomUUID(), confidence: c.confidence || 3, enjoyment: c.enjoyment || "neutral", grade: c.grade || ""
+        }));
+        setRows(prev => {
+          const merged = [...prev.filter(r => r.code.trim())];
+          newRows.forEach(nr => {
+            if (!merged.find(m => m.code.toUpperCase() === nr.code.toUpperCase())) merged.push(nr);
+          });
+          return merged.length ? merged : [newRow()];
+        });
+        setStep(3); // Jump to review
       }
     } catch (err) {
-      const message = err instanceof Error ? err.message : "Could not parse transcript upload.";
-      setIntakeMessage(`Transcript import failed: ${message}`);
+      setError(err instanceof Error ? err.message : "Import failed");
     } finally {
       setIntakeBusy(false);
     }
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleSubmit() {
     setLoading(true);
     setError(null);
-
-    const cleanedRows = rows
-      .filter((row) => row.code.trim())
-      .map((row) => ({
-        code: row.code.trim().toUpperCase(),
-        grade: row.grade || 0,
-        confidence: Number(row.confidence),
-        enjoyment: row.enjoyment,
-        notes: row.notes?.trim() || undefined,
-        transfer: row.transfer,
-        counts_as: row.counts_as?.trim() || undefined,
-        repeat_attempt: row.repeat_attempt,
-      }));
-
+    const cleanedRows = rows.filter(r => r.code.trim()).map(r => ({
+      code: r.code.trim().toUpperCase(), grade: r.grade || 0, confidence: Number(r.confidence), enjoyment: r.enjoyment, notes: r.notes?.trim() || undefined, transfer: r.transfer, counts_as: r.counts_as?.trim() || undefined, repeat_attempt: r.repeat_attempt
+    }));
     const payload: StudentProfileInput = {
-      student_id: studentId.trim(),
-      completed_courses: cleanedRows,
-      goals: [goals.trim(), workloadPath.trim()].filter(Boolean),
-      program_interest: programInterest.trim() || undefined,
-      program_id: programId,
-      allowed_restriction_groups: ["any"],
+      student_id: studentId.trim(), completed_courses: cleanedRows, goals: goals.trim() ? [goals.trim()] : [], program_interest: programInterest.trim() || undefined, program_id: programId, allowed_restriction_groups: ["any"]
     };
-
     try {
       const analysis = await apiClient.analyzeProfile(payload);
       appStorage.saveProfile(payload);
       appStorage.saveAnalysis(analysis);
-      router.push("/dashboard/recommendations");
+      router.push("/dashboard/audit");
     } catch (err) {
-      const message =
-        err instanceof Error && err.message === "Failed to fetch"
-          ? "Could not reach backend. Confirm backend is running on 127.0.0.1:8000 and refresh this page."
-          : err instanceof Error
-            ? err.message
-            : "Could not analyze profile.";
-      setError(message);
+      setError(err instanceof Error ? err.message : "Analysis failed");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <section className="stack profile-page">
-      <h1>Academic Profile</h1>
-      <p className="meta profile-page-lede">
-        Add your details first, optionally upload a transcript to fill course rows, then review before running analysis.
-      </p>
+    <section className="stack fade-in">
+      <header style={{ marginBottom: "1rem" }}>
+        <h1>Build Academic Profile</h1>
+        <p className="meta">Let's map out what you've done so far to personalize your pathway.</p>
+      </header>
 
-      <form className="stack" onSubmit={handleSubmit}>
-        <div className="card">
-          <h3 className="profile-section-title">1 · Student info</h3>
-          <p className="meta">These fields feed pathway recommendations. Inputs expand to full width on smaller screens.</p>
-          <div className="profile-field-grid">
-            <label>
-              Student ID
-              <input
-                value={studentId}
-                onChange={(event) => setStudentId(event.target.value)}
-                required
-                placeholder="e.g. your Brock student number"
-                autoComplete="off"
-              />
-            </label>
-            <label>
-              Program track
-              <select value={programId} onChange={(event) => setProgramId(event.target.value)} required>
-                {catalogPrograms.map((p) => (
-                  <option key={p.program_id} value={p.program_id}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label>
-              Focus notes (optional)
-              <input
-                value={programInterest}
-                placeholder="e.g. AI concentration, co-op, minor ideas"
-                onChange={(event) => setProgramInterest(event.target.value)}
-              />
-            </label>
-            <label className="profile-field-span-2">
-              Goals
-              <textarea
-                value={goals}
-                placeholder="e.g. AI internship, software engineering, graduate school"
-                onChange={(event) => setGoals(event.target.value)}
-                rows={3}
-              />
-            </label>
-            <label className="profile-field-span-2">
-              Workload / preferred path (optional)
-              <textarea
-                value={workloadPath}
-                placeholder="e.g. balanced workload, co-op oriented"
-                onChange={(event) => setWorkloadPath(event.target.value)}
-                rows={2}
-              />
-            </label>
+      {/* Stepper */}
+      <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
+        {[1, 2, 3].map(s => (
+          <div key={s} style={{ flex: 1, height: "4px", background: step >= s ? "var(--accent-primary)" : "rgba(255,255,255,0.1)", borderRadius: "2px", transition: "all 0.3s" }} />
+        ))}
+      </div>
+
+      {error && <div className="error">{error}</div>}
+
+      {step === 1 && (
+        <div className="card stack fade-in">
+          <h3>Step 1: The Basics</h3>
+          <label>Student ID<input value={studentId} onChange={e => setStudentId(e.target.value)} placeholder="Your Brock ID" /></label>
+          <label>Program Track<select value={programId} onChange={e => setProgramId(e.target.value)}>{catalogPrograms.map(p => <option key={p.program_id} value={p.program_id}>{p.name}</option>)}</select></label>
+          <label>Career Goals (Optional)<textarea value={goals} onChange={e => setGoals(e.target.value)} placeholder="e.g. Software Engineering, Data Science" rows={2}/></label>
+          <div style={{ marginTop: "1rem", textAlign: "right" }}>
+            <button className="button button-primary" onClick={() => setStep(2)} disabled={!canProceedStep1}>Next: Add Courses</button>
           </div>
         </div>
+      )}
 
-        <div className="card intake-card">
-          <div className="panel-title-row">
-            <h3 className="profile-section-title">2 · Quick intake (optional)</h3>
-            <span className="badge warning">beta</span>
+      {step === 2 && (
+        <div className="stack fade-in">
+          <div className="card stack" style={{ background: "rgba(168,85,247,0.05)" }}>
+            <h3>Step 2: Add Courses</h3>
+            <p className="meta">Fastest way: upload your unofficial transcript. We'll extract the data.</p>
+            <div className="dropzone" style={{ padding: "2rem" }}>
+              <input type="file" accept=".pdf,.png,.jpg,.jpeg" onChange={e => e.target.files?.[0] && handleTranscriptImport(e.target.files[0])} style={{ display: "none" }} id="transcript-upload" />
+              <label htmlFor="transcript-upload" style={{ cursor: "pointer", display: "block" }}>
+                {intakeBusy ? "Extracting..." : "Click or drag transcript PDF/Image here"}
+              </label>
+            </div>
           </div>
-          <p className="meta">
-            Upload an unofficial transcript PDF or marks screenshot. We extract course rows automatically—you can edit everything
-            below before submitting.
-          </p>
-          <label className="file-input-label">
-            Transcript / marks image
-            <input
-              type="file"
-              accept={supportedTranscriptTypes}
-              onChange={(event) => {
-                const file = event.target.files?.[0];
-                if (file) {
-                  void handleTranscriptImport(file);
-                }
-              }}
-            />
-          </label>
-          {intakeBusy && <p className="notice">Extracting transcript data...</p>}
-          {intakeMessage && <p className="notice">{intakeMessage}</p>}
+          
+          <div style={{ textAlign: "center" }}>
+            <span className="meta">— or enter manually —</span>
+          </div>
+
+          <div style={{ textAlign: "right" }}>
+            <button className="button button-secondary" onClick={() => setStep(1)} style={{ marginRight: "1rem" }}>Back</button>
+            <button className="button button-primary" onClick={() => setStep(3)}>Continue to Manual Entry</button>
+          </div>
         </div>
+      )}
 
-        <div className="card">
-          <h3 className="profile-section-title">3 · Completed courses</h3>
-          <p className="meta">Scroll horizontally on small screens if needed. Add or remove rows as needed.</p>
-          <div className="profile-table-wrap">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Course</th>
-                  <th>Grade</th>
-                  <th>Confidence</th>
-                  <th>Enjoyment</th>
-                  <th>Transfer / path</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row) => (
-                  <tr key={row.id}>
-                    <td>
-                      <input
-                        aria-label="Course code"
-                        placeholder="COSC1P02"
-                        value={row.code}
-                        onChange={(event) => updateRow(row.id, { code: event.target.value })}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        aria-label="Grade"
-                        placeholder="84 or B+"
-                        value={String(row.grade)}
-                        onChange={(event) => updateRow(row.id, { grade: event.target.value })}
-                      />
-                    </td>
-                    <td>
-                      <input
-                        aria-label="Confidence"
-                        type="number"
-                        min={1}
-                        max={10}
-                        value={row.confidence}
-                        onChange={(event) => updateRow(row.id, { confidence: Number(event.target.value) })}
-                      />
-                    </td>
-                    <td>
-                      <select
-                        aria-label="Enjoyment"
-                        value={row.enjoyment}
-                        onChange={(event) => updateRow(row.id, { enjoyment: event.target.value as EnjoymentValue })}
-                      >
-                        {enjoymentOptions.map((option) => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
-                    <td>
-                      <div className="profile-transfer-cell">
-                        <label className="profile-inline-check">
-                          <input
-                            type="checkbox"
-                            checked={row.transfer}
-                            onChange={(event) => updateRow(row.id, { transfer: event.target.checked })}
-                          />
-                          Transfer
-                        </label>
-                        <input
-                          aria-label="Counts as"
-                          placeholder="Counts as (optional)"
-                          value={row.counts_as}
-                          onChange={(event) => updateRow(row.id, { counts_as: event.target.value })}
-                        />
-                      </div>
-                    </td>
-                    <td>
-                      <button type="button" className="button button-secondary" onClick={() => removeRow(row.id)}>
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      {step === 3 && (
+        <div className="stack fade-in">
+          <div className="card stack">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <h3>Step 3: Review Course Data</h3>
+              <button className="button button-secondary" onClick={() => setRows(p => [...p, newRow()])}>+ Add Row</button>
+            </div>
+            <p className="meta">Fine-tune your grades, confidence levels, and enjoyment to improve recommendations.</p>
+            
+            <div className="stack" style={{ gap: "1rem" }}>
+              {rows.map((row, i) => (
+                <div key={row.id} style={{ background: "rgba(0,0,0,0.2)", border: "1px solid rgba(255,255,255,0.1)", padding: "1rem", borderRadius: "8px", display: "grid", gridTemplateColumns: "1fr 1fr 2fr 1fr auto", gap: "1rem", alignItems: "end" }}>
+                  <label>Code<input placeholder="COSC 1P02" value={row.code} onChange={e => updateRow(row.id, {code: e.target.value})} /></label>
+                  <label>Grade<input placeholder="85 or B+" value={row.grade as string} onChange={e => updateRow(row.id, {grade: e.target.value})} /></label>
+                  <label>Confidence (1-10)
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                      <input type="range" min="1" max="10" value={row.confidence} onChange={e => updateRow(row.id, {confidence: Number(e.target.value)})} style={{ flex: 1 }}/>
+                      <span style={{ width: "20px", textAlign: "center" }}>{row.confidence}</span>
+                    </div>
+                  </label>
+                  <label>Enjoyment
+                    <select value={row.enjoyment} onChange={e => updateRow(row.id, {enjoyment: e.target.value as EnjoymentValue})}>
+                      <option value="liked">👍 Liked</option><option value="neutral">😐 Neutral</option><option value="disliked">👎 Disliked</option>
+                    </select>
+                  </label>
+                  <button className="button button-secondary" onClick={() => removeRow(row.id)} style={{ padding: "0.75rem", background: "rgba(239, 68, 68, 0.1)", color: "#fca5a5", borderColor: "rgba(239, 68, 68, 0.3)" }}>✕</button>
+                </div>
+              ))}
+            </div>
           </div>
-          <div style={{ marginTop: "0.8rem" }}>
-            <button type="button" className="button button-secondary" onClick={() => setRows((prev) => [...prev, newRow()])}>
-              Add course row
+
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1rem" }}>
+            <button className="button button-secondary" onClick={() => setStep(2)}>Back</button>
+            <button className="button button-primary" onClick={handleSubmit} disabled={!canSubmit || loading} style={{ padding: "1rem 2rem" }}>
+              {loading ? "Generating Audit..." : "Generate Degree Audit"}
             </button>
           </div>
         </div>
-
-        {error && <p className="error">{error}</p>}
-
-        <div>
-          <button className="button button-primary" disabled={!canSubmit || loading} type="submit">
-            {loading ? "Analyzing..." : "Submit profile for analysis"}
-          </button>
-        </div>
-      </form>
+      )}
     </section>
   );
 }

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import React from "react";
-import Link from "next/link";
 import { ConditionalFooter } from "@/components/ConditionalFooter";
 
 export const metadata: Metadata = {
@@ -17,15 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header className="site-header">
-          <div className="site-header-inner">
-            <Link className="brand" href="/">
-              Pathwise AI
-            </Link>
-            <p className="header-note">Pathway planning and grounded study tools.</p>
-          </div>
-        </header>
-        <main>{children}</main>
+        {children}
         <ConditionalFooter />
       </body>
     </html>

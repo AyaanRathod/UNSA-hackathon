@@ -1,66 +1,110 @@
-import Link from "next/link";
+"use client";
 
-const modules = [
-  {
-    href: "/dashboard/profile",
-    title: "Enter Academic Profile",
-    description: "Add completed courses, grades, confidence, and enjoyment signals.",
-  },
-  {
-    href: "/dashboard/upload",
-    title: "Upload Course Materials",
-    description: "Upload syllabus, notes, or transcript PDFs and track processing status.",
-  },
-  {
-    href: "/dashboard/recommendations",
-    title: "View Pathway Recommendations",
-    description: "See next courses with transparent rationale, confidence, and risk labels.",
-  },
-  {
-    href: "/dashboard/careers",
-    title: "View Career Match Results",
-    description: "Explore cluster-driven career fit, gaps, and suggested next steps.",
-  },
-  {
-    href: "/dashboard/study",
-    title: "Open Study Workspace",
-    description: "Browse document snippets, generate artifacts, and ask grounded Q&A.",
-  },
-  {
-    href: "/dashboard/french-demo",
-    title: "French Demo",
-    description: "Show French-origin snippet linkage to English study output.",
-  },
-];
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { appStorage } from "@/lib/storage";
 
 export default function DashboardHomePage() {
+  const [hasProfile, setHasProfile] = useState(false);
+  const [hasAnalysis, setHasAnalysis] = useState(false);
+  const [hasDocs, setHasDocs] = useState(false);
+
+  useEffect(() => {
+    const profile = appStorage.loadProfile();
+    const analysis = appStorage.loadAnalysis();
+    const docs = appStorage.loadDocuments();
+
+    if (profile?.student_id) setHasProfile(true);
+    if (analysis?.active_program_id) setHasAnalysis(true);
+    if (docs?.length > 0) setHasDocs(true);
+  }, []);
+
   return (
-    <section className="stack">
-      <div className="hero dashboard-hero-wide">
-        <h1>Pathwise Command Center</h1>
-        <p className="meta dashboard-home-lede">
-          Build your profile once, then move between planning, career fit, and grounded study support in one workspace.
-        </p>
-        <div className="hero-actions">
-          <Link className="button button-primary" href="/dashboard/profile">
-            Start with profile
-          </Link>
-          <Link className="button button-secondary" href="/dashboard/study">
-            Open study workspace
-          </Link>
-        </div>
-      </div>
-      <div className="module-grid">
-        {modules.map((module) => (
-          <article key={module.href} className="card">
-            <h3>{module.title}</h3>
-            <p className="meta">{module.description}</p>
-            <Link className="button button-secondary" href={module.href}>
-              Open
+    <div className="stack" style={{ maxWidth: "800px" }}>
+      <h1 style={{ marginBottom: "0.5rem" }}>Command Center</h1>
+      <p className="meta" style={{ marginBottom: "2rem" }}>
+        Welcome back. Follow the steps below to set up your profile and explore your pathway.
+      </p>
+
+      <div className="stack" style={{ gap: "1rem" }}>
+        {/* Step 1 */}
+        <div className="card" style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", borderColor: hasProfile ? "var(--success)" : "var(--accent-primary)" }}>
+          <div style={{ 
+            width: "32px", height: "32px", borderRadius: "50%", 
+            background: hasProfile ? "var(--success)" : "var(--accent-primary)", 
+            color: "white", display: "flex", alignItems: "center", justifyContent: "center",
+            fontWeight: "bold", flexShrink: 0
+          }}>
+            {hasProfile ? "✓" : "1"}
+          </div>
+          <div style={{ flex: 1 }}>
+            <h3 style={{ marginBottom: "0.5rem" }}>Build Academic Profile</h3>
+            <p className="meta" style={{ marginBottom: "1rem" }}>Upload your transcript or enter your courses manually to give Pathwise context.</p>
+            <Link href="/dashboard/profile" className="button button-primary">
+              {hasProfile ? "Edit Profile" : "Start Profile"}
             </Link>
-          </article>
-        ))}
+          </div>
+        </div>
+
+        {/* Step 2 */}
+        <div className="card" style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", opacity: hasProfile ? 1 : 0.6 }}>
+          <div style={{ 
+            width: "32px", height: "32px", borderRadius: "50%", 
+            background: hasAnalysis ? "var(--success)" : "rgba(255,255,255,0.1)", 
+            color: "white", display: "flex", alignItems: "center", justifyContent: "center",
+            fontWeight: "bold", flexShrink: 0
+          }}>
+            {hasAnalysis ? "✓" : "2"}
+          </div>
+          <div style={{ flex: 1 }}>
+            <h3 style={{ marginBottom: "0.5rem" }}>Review Audit & Recommendations</h3>
+            <p className="meta" style={{ marginBottom: "1rem" }}>See what requirements you're missing and discover AI-recommended next courses.</p>
+            <Link href={hasAnalysis ? "/dashboard/audit" : "#"} className={`button button-secondary ${!hasAnalysis ? "disabled" : ""}`} style={{ opacity: hasAnalysis ? 1 : 0.5, pointerEvents: hasAnalysis ? "auto" : "none" }}>
+              View Degree Audit
+            </Link>
+          </div>
+        </div>
+
+        {/* Step 3 */}
+        <div className="card" style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start", opacity: hasAnalysis ? 1 : 0.6 }}>
+          <div style={{ 
+            width: "32px", height: "32px", borderRadius: "50%", 
+            background: "rgba(255,255,255,0.1)", 
+            color: "white", display: "flex", alignItems: "center", justifyContent: "center",
+            fontWeight: "bold", flexShrink: 0
+          }}>
+            3
+          </div>
+          <div style={{ flex: 1 }}>
+            <h3 style={{ marginBottom: "0.5rem" }}>Explore Career Matches</h3>
+            <p className="meta" style={{ marginBottom: "1rem" }}>See how your coursework aligns with real-world career trajectories.</p>
+            <Link href={hasAnalysis ? "/dashboard/careers" : "#"} className="button button-secondary" style={{ opacity: hasAnalysis ? 1 : 0.5, pointerEvents: hasAnalysis ? "auto" : "none" }}>
+              Explore Careers
+            </Link>
+          </div>
+        </div>
+
+        {/* Step 4 */}
+        <div className="card" style={{ display: "flex", gap: "1.5rem", alignItems: "flex-start" }}>
+          <div style={{ 
+            width: "32px", height: "32px", borderRadius: "50%", 
+            background: hasDocs ? "var(--success)" : "rgba(255,255,255,0.1)", 
+            color: "white", display: "flex", alignItems: "center", justifyContent: "center",
+            fontWeight: "bold", flexShrink: 0
+          }}>
+            {hasDocs ? "✓" : "4"}
+          </div>
+          <div style={{ flex: 1 }}>
+            <h3 style={{ marginBottom: "0.5rem" }}>Study Workspace</h3>
+            <p className="meta" style={{ marginBottom: "1rem" }}>Upload syllabi and notes to use Active Recall, Feynman mode, and Flashcards.</p>
+            <div className="row">
+              <Link href="/dashboard/upload" className="button button-secondary">Upload Materials</Link>
+              <Link href="/dashboard/study" className="button button-primary">Open Study Space</Link>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </section>
+    </div>
   );
 }

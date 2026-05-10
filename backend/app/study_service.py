@@ -4,6 +4,7 @@ from .models import Citation, DocumentChunk, StudyArtifactType
 from .retrieval import RetrievedChunk, StudyRetriever
 from .study_text_utils import compact_whitespace, normalize_pdf_extract, strip_internal_chunk_markers
 from .watsonx_client import WatsonxClient
+from .featherless_client import FeatherlessClient
 
 
 _RETRIEVAL_TOPIC_DEFAULTS: dict[StudyArtifactType, str] = {
@@ -128,8 +129,9 @@ def _fallback_artifact(artifact_type: StudyArtifactType, chunks: list[DocumentCh
 
 
 class StudyArtifactService:
-    def __init__(self, watsonx_client: WatsonxClient, retriever: StudyRetriever) -> None:
+    def __init__(self, watsonx_client: WatsonxClient, featherless_client: FeatherlessClient, retriever: StudyRetriever) -> None:
         self.watsonx_client = watsonx_client
+        self.featherless_client = featherless_client
         self.retriever = retriever
 
     def generate_artifact(
@@ -168,7 +170,13 @@ class StudyArtifactService:
             "Use short paragraphs (2–4 sentences) separated by a blank line, or compact bullet lists. "
             "Do not repeat the same disclaimer, introduction, or closing advice more than once."
         )
-        if artifact_type != "summary":
+        if artifact_type == "glossary":
+            concision = (
+                "You must strictly format each glossary entry as a bullet point exactly like this:\n"
+                "- **Term Name**: Definition\n"
+                "Do not use any other format or include introductory text."
+            )
+        elif artifact_type != "summary":
             concision = (
                 "Stay focused and scannable: avoid repeating the same boilerplate. "
                 "Use bullets where they help; keep sections tight."
@@ -188,16 +196,23 @@ class StudyArtifactService:
             f"Source excerpts:\n{prompt_chunks}"
         )
         try:
-            text = self.watsonx_client.generate_text(
-                prompt,
-                max_new_tokens=_max_tokens_for_artifact(artifact_type),
-                temperature=0.0,
-            )
+            if artifact_type == "concept_breakdown" and self.featherless_client.enabled:
+                text = self.featherless_client.generate_text(
+                    prompt,
+                    max_tokens=_max_tokens_for_artifact(artifact_type),
+                    temperature=0.2,
+                )
+            else:
+                text = self.watsonx_client.generate_text(
+                    prompt,
+                    max_new_tokens=_max_tokens_for_artifact(artifact_type),
+                    temperature=0.0,
+                )
             cleaned = compact_whitespace(strip_internal_chunk_markers(text))
             return cleaned, citations, None
         except Exception as exc:
             return _fallback_artifact(artifact_type, selected_chunks), citations, (
-                f"watsonx generation failed; fallback used ({exc})."
+                f"LLM generation failed; fallback used ({exc})."
             )
 
     def answer_question(
@@ -207,7 +222,7 @@ class StudyArtifactService:
         chunks: list[DocumentChunk],
         top_k: int,
     ) -> tuple[str, list[Citation], str | None]:
-        query = f"{question} exam topics definitions objectives concepts"
+        query = question
         retrieved = self.retriever.search(query, chunks, top_k=min(top_k * 2, len(chunks) or 1))
         if not retrieved:
             return "No study chunks were found for this session.", [], "ingest a document first"
@@ -230,12 +245,15 @@ class StudyArtifactService:
             for chunk in selected
         )
         prompt = (
-            "Answer the student question using only the provided excerpts.\n"
-            "If the answer is not supported, say 'I cannot find that in the uploaded materials.'\n"
-            "Do not paste chunk IDs, filenames, or '[internal …]' labels in your answer.\n"
-            "Be concise and factual.\n\n"
+            "You are a helpful study tutor answering a student's question based STRICTLY on the provided excerpts.\n"
+            "IMPORTANT RULES:\n"
+            "1. If the excerpts do NOT contain the answer to the question, you MUST reply with EXACTLY: 'I cannot find that in the uploaded materials.'\n"
+            "2. Do NOT attempt to summarize the excerpts if the answer is missing.\n"
+            "3. Do NOT include chunk IDs, page numbers, or section labels in your answer.\n"
+            "4. Be direct, concise, and factual.\n\n"
+            f"Excerpts:\n{context}\n\n"
             f"Question: {question}\n\n"
-            f"Excerpts:\n{context}"
+            "Answer:"
         )
         try:
             answer = self.watsonx_client.generate_text(prompt, max_new_tokens=520, temperature=0.0)
@@ -244,3 +262,58 @@ class StudyArtifactService:
         except Exception as exc:
             answer = "Based on retrieved material: " + " ".join(chunk.text_en[:180] for chunk in selected[:2])
             return answer, citations, f"watsonx answer generation failed; fallback used ({exc})"
+
+    def evaluate_blurt(
+        self,
+        *,
+        blurt_text: str,
+        chunks: list[DocumentChunk],
+        top_k: int = 15,
+    ) -> tuple[str, int, str | None]:
+        query = f"{blurt_text} overview summary key topics"
+        retrieved = self.retriever.search(query, chunks, top_k=min(top_k * 2, len(chunks) or 1))
+        if not retrieved:
+            return "No study chunks were found to compare against.", 0, "ingest a document first"
+            
+        selected = (
+            _merge_bm25_and_spread(retrieved, chunks, top_k, spread_share=0.4)
+            if len(chunks) > top_k
+            else [row.chunk for row in retrieved[:top_k]]
+        )
+        
+        if not self.watsonx_client.status.ready:
+            return "Watsonx unavailable. Cannot evaluate blurt.", 0, "watsonx unavailable"
+            
+        context = "\n\n".join(
+            f"{normalize_pdf_extract(chunk.text_en)}"
+            for chunk in selected
+        )
+        prompt = (
+            "You are an expert tutor evaluating a student's 'blurt' (a recall exercise where they write everything they remember).\n"
+            "Compare the student's text to the actual source excerpts.\n"
+            "Task:\n"
+            "1. Give them a score from 0 to 100 on the first line formatted exactly as 'SCORE: X'.\n"
+            "2. Tell them what they got right.\n"
+            "3. Tell them what key concepts they missed from the source text.\n"
+            "4. Gently correct any blatant hallucinations or incorrect facts (e.g. if they mention something completely unrelated to the text).\n\n"
+            "Keep your feedback encouraging, concise, and formatted with markdown.\n\n"
+            f"Source excerpts:\n{context}\n\n"
+            f"Student's blurt:\n{blurt_text}\n"
+        )
+        
+        try:
+            feedback = self.watsonx_client.generate_text(prompt, max_new_tokens=600, temperature=0.0)
+            
+            score = 50
+            lines = feedback.split('\n')
+            if lines and lines[0].strip().startswith("SCORE:"):
+                try:
+                    score = int(lines[0].replace("SCORE:", "").strip())
+                    feedback = "\n".join(lines[1:]).strip()
+                except ValueError:
+                    pass
+                    
+            cleaned = compact_whitespace(strip_internal_chunk_markers(feedback))
+            return cleaned, score, None
+        except Exception as exc:
+            return f"Failed to evaluate blurt: {exc}", 0, str(exc)

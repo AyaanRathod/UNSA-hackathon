@@ -1,23 +1,34 @@
-import Link from "next/link";
+"use client";
 
-const links = [
-  { href: "/dashboard", label: "Home" },
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const navItems = [
+  { href: "/dashboard", label: "Dashboard Home" },
   { href: "/dashboard/profile", label: "Academic Profile" },
-  { href: "/dashboard/upload", label: "Upload Workspace" },
-  { href: "/dashboard/recommendations", label: "Recommendations" },
-  { href: "/dashboard/careers", label: "Career Match" },
+  { href: "/dashboard/upload", label: "Upload Materials" },
+  { href: "/dashboard/audit", label: "Degree Audit" },
+  { href: "/dashboard/careers", label: "Career Matches" },
   { href: "/dashboard/study", label: "Study Workspace" },
-  { href: "/dashboard/french-demo", label: "French Demo" },
 ];
 
 export function DashboardNav() {
+  const pathname = usePathname();
+
   return (
-    <nav className="nav-grid" aria-label="Dashboard navigation">
-      {links.map((link) => (
-        <Link className="nav-pill" key={link.href} href={link.href}>
-          {link.label}
-        </Link>
-      ))}
+    <nav className="stack" style={{ gap: "0.5rem" }}>
+      {navItems.map((item) => {
+        const isActive = pathname === item.href;
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`nav-link ${isActive ? "active" : ""}`}
+          >
+            {item.label}
+          </Link>
+        );
+      })}
     </nav>
   );
 }

@@ -23,6 +23,8 @@ from .models import (
     IngestDocumentResponse,
     StudyArtifactRequest,
     StudyArtifactResponse,
+    EvaluateBlurtRequest,
+    EvaluateBlurtResponse,
     StudentProfileInput,
     TtsRequest,
     WatsonxStatusResponse,
@@ -38,13 +40,19 @@ from .transcript_llm import extract_courses_via_watsonx
 from .transcript_parser import ParsedTranscriptResult, parse_transcript_text
 from .tts_service import TtsConfigurationError, WatsonTtsService
 from .watsonx_client import WatsonxConfigurationError, create_watsonx_client
+from .featherless_client import FeatherlessClient
 
 load_dotenv()
 settings = load_settings()
 watsonx_client = create_watsonx_client(settings)
+featherless_client = FeatherlessClient()
 doc_client = create_doc_understanding_client(settings)
 study_store = StudySessionStore()
-study_artifacts = StudyArtifactService(watsonx_client=watsonx_client, retriever=StudyRetriever())
+study_artifacts = StudyArtifactService(
+    watsonx_client=watsonx_client,
+    featherless_client=featherless_client,
+    retriever=StudyRetriever()
+)
 tts_service = WatsonTtsService(settings)
 
 
@@ -130,7 +138,7 @@ def profile_analyze(payload: StudentProfileInput, enrich_with_llm: bool = False)
     response = response.model_copy(update={"recommendations": response.recommendations[:10]})
 
     if enrich_with_llm:
-        response = polish_profile_response_with_watsonx(response, watsonx_client)
+        response = polish_profile_response_with_watsonx(response, watsonx_client, featherless_client)
     return response
 
 
@@ -305,6 +313,25 @@ def grounded_qa(payload: GroundedQuestionRequest) -> GroundedAnswerResponse:
         session_id=payload.session_id,
         answer=answer,
         citations=citations,
+        warning=warning,
+    )
+
+
+@app.post("/api/study/evaluate-blurt", response_model=EvaluateBlurtResponse)
+def evaluate_blurt_endpoint(payload: EvaluateBlurtRequest) -> EvaluateBlurtResponse:
+    chunks = study_store.get_chunks(payload.session_id)
+    if not chunks:
+        raise HTTPException(status_code=404, detail="No study material found for this session. Upload a PDF first.")
+
+    feedback, score, warning = study_artifacts.evaluate_blurt(
+        blurt_text=payload.blurt_text,
+        chunks=chunks,
+        top_k=15,
+    )
+    return EvaluateBlurtResponse(
+        session_id=payload.session_id,
+        feedback=feedback,
+        score=score,
         warning=warning,
     )
 

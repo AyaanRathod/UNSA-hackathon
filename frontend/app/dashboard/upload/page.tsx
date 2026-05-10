@@ -13,7 +13,8 @@ function onlyPdf(files: FileList | File[]): File[] {
 export default function UploadWorkspacePage() {
   const [documents, setDocuments] = useState<UploadedDocument[]>([]);
   const [isUploading, setIsUploading] = useState(false);
-  const [message, setMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<{ text: string; type: "success" | "error" | "info" } | null>(null);
+  const [dragActive, setDragActive] = useState(false);
 
   useEffect(() => {
     setDocuments(appStorage.loadDocuments());
@@ -21,7 +22,7 @@ export default function UploadWorkspacePage() {
 
   async function handleFiles(inputFiles: File[]) {
     if (!inputFiles.length) {
-      setMessage("Select PDF files only.");
+      setMessage({ text: "Select PDF files only.", type: "error" });
       return;
     }
 
@@ -39,53 +40,98 @@ export default function UploadWorkspacePage() {
     setIsUploading(false);
 
     if (uploaded.some((doc) => doc.status === "local_only")) {
-      setMessage("Upload processed in local extraction mode. You can still use grounded artifacts and Q&A.");
+      setMessage({ text: "Upload processed in local mode. Grounded artifacts will use local data.", type: "info" });
     } else if (uploaded.some((doc) => Boolean(doc.warning))) {
-      setMessage("Upload completed with fallback warning details preserved for judges.");
+      setMessage({ text: "Upload completed with warnings.", type: "info" });
     } else {
-      setMessage("Upload submitted. Check status below.");
+      setMessage({ text: "Upload successful. Materials are ready for study.", type: "success" });
     }
   }
 
   function onFilePickerChange(event: ChangeEvent<HTMLInputElement>) {
-    if (!event.target.files) {
-      return;
-    }
+    if (!event.target.files) return;
     void handleFiles(onlyPdf(event.target.files));
+  }
+
+  function onDragOver(e: DragEvent) {
+    e.preventDefault();
+    setDragActive(true);
+  }
+
+  function onDragLeave() {
+    setDragActive(false);
   }
 
   function onDrop(event: DragEvent<HTMLDivElement>) {
     event.preventDefault();
+    setDragActive(false);
     void handleFiles(onlyPdf(event.dataTransfer.files));
   }
 
   return (
-    <section className="stack">
-      <h1>Upload Course Materials</h1>
-      <p className="meta">Drag/drop or pick syllabus, notes, and transcript PDFs. Processing state is tracked per document.</p>
+    <section className="stack fade-in">
+      <header style={{ marginBottom: "1rem" }}>
+        <h1>Course Materials</h1>
+        <p className="meta">Upload syllabi, notes, or slides (PDF only) to power the Study Workspace.</p>
+      </header>
 
-      <div className="dropzone" onDrop={onDrop} onDragOver={(event) => event.preventDefault()}>
-        <p>Drop PDFs here, or use file picker.</p>
-        <input aria-label="Upload PDFs" type="file" accept=".pdf,application/pdf" multiple onChange={onFilePickerChange} />
+      <div 
+        className="dropzone" 
+        onDrop={onDrop} 
+        onDragOver={onDragOver} 
+        onDragLeave={onDragLeave}
+        style={{ 
+          borderColor: dragActive ? "var(--accent-primary)" : "rgba(255,255,255,0.2)",
+          background: dragActive ? "rgba(168,85,247,0.05)" : "rgba(255,255,255,0.02)",
+          transform: dragActive ? "scale(1.02)" : "scale(1)"
+        }}
+      >
+        <div style={{ fontSize: "3rem", marginBottom: "1rem", color: dragActive ? "var(--accent-primary)" : "var(--text-secondary)", transition: "color 0.2s" }}>
+          📄
+        </div>
+        <h3 style={{ marginBottom: "0.5rem" }}>{dragActive ? "Drop PDFs here" : "Drag & drop PDFs here"}</h3>
+        <p className="meta" style={{ marginBottom: "1.5rem" }}>or click to browse your files</p>
+        
+        <input id="pdf-upload" type="file" accept=".pdf,application/pdf" multiple onChange={onFilePickerChange} style={{ display: "none" }} />
+        <label htmlFor="pdf-upload" className="button button-secondary" style={{ cursor: "pointer", pointerEvents: isUploading ? "none" : "auto" }}>
+          {isUploading ? "Uploading..." : "Browse Files"}
+        </label>
       </div>
 
-      {isUploading && <p className="notice">Uploading and processing...</p>}
-      {message && <p className="notice">{message}</p>}
+      {message && (
+        <div className={`notice ${message.type === 'error' ? 'error' : ''}`} style={{ 
+          background: message.type === 'success' ? 'rgba(16, 185, 129, 0.1)' : undefined,
+          borderColor: message.type === 'success' ? 'rgba(16, 185, 129, 0.3)' : undefined,
+          color: message.type === 'success' ? '#34d399' : undefined
+        }}>
+          {message.text}
+        </div>
+      )}
+
+      <h2 style={{ marginTop: "2rem", marginBottom: "1rem" }}>Your Materials</h2>
 
       {documents.length === 0 ? (
-        <p className="empty-state">No uploaded documents yet.</p>
+        <div className="empty-state">
+          <p>No documents uploaded yet. Add some to start studying.</p>
+        </div>
       ) : (
-        <div className="stack">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1.5rem" }}>
           {documents.map((document) => (
             <article className="card" key={document.document_id}>
-              <h3>{document.filename}</h3>
-              <div className="hero-actions">
+              <h3 style={{ fontSize: "1.1rem", marginBottom: "1rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                {document.filename}
+              </h3>
+              <div className="row" style={{ justifyContent: "space-between" }}>
                 <StatusBadge value={document.status} />
-                <span className="meta">
-                  {document.source_language ? `Source: ${document.source_language}` : "Source language pending"}
+                <span className="meta" style={{ fontSize: "0.8rem" }}>
+                  {document.source_language ? `Lang: ${document.source_language}` : "Detecting..."}
                 </span>
               </div>
-              {document.warning && <p className="meta">Warning: {document.warning}</p>}
+              {document.warning && (
+                <p className="meta" style={{ marginTop: "1rem", fontSize: "0.8rem", color: "var(--warning)" }}>
+                  ⚠ {document.warning}
+                </p>
+              )}
             </article>
           ))}
         </div>
