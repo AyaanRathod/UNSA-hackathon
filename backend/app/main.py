@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+import time
+
+from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from dotenv import load_dotenv
@@ -78,6 +80,15 @@ app.add_middleware(
 )
 
 
+@app.middleware("http")
+async def add_response_time_header(request: Request, call_next):
+    start = time.perf_counter()
+    response = await call_next(request)
+    elapsed_ms = (time.perf_counter() - start) * 1000
+    response.headers["X-Response-Time"] = f"{elapsed_ms:.1f}ms"
+    return response
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
@@ -110,7 +121,10 @@ def watsonx_status() -> WatsonxStatusResponse:
 
 
 @app.post("/api/profile/analyze", response_model=AnalyzeProfileResponse)
-def profile_analyze(payload: StudentProfileInput, enrich_with_llm: bool = False) -> AnalyzeProfileResponse:
+def profile_analyze(
+    payload: StudentProfileInput,
+    enrich_with_llm: bool = Query(default=False, description="Polish recommendation rationale with watsonx LLM (requires watsonx credentials)."),
+) -> AnalyzeProfileResponse:
     catalog = load_catalog()
     pool = 36 if settings.pathwise_ai_rank_recommendations else 10
     response = analyze_profile(payload, catalog, recommendation_limit=pool)

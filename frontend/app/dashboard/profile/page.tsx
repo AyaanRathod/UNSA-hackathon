@@ -30,6 +30,14 @@ function newRow(): CourseRow {
 }
 
 const enjoymentOptions: EnjoymentValue[] = ["liked", "neutral", "disliked"];
+
+function isValidGrade(grade: string | number): boolean {
+  const g = String(grade).trim();
+  if (!g) return true;
+  const num = Number(g);
+  if (!isNaN(num) && num >= 0 && num <= 100) return true;
+  return /^[A-Da-d][+-]?$|^[Ff]$/i.test(g);
+}
 const supportedTranscriptTypes = ".pdf,.png,.jpg,.jpeg,.webp";
 
 const FALLBACK_PROGRAMS: CatalogProgramSummary[] = [
@@ -312,6 +320,7 @@ export default function AcademicProfilePage() {
                         aria-label="Grade"
                         placeholder="84 or B+"
                         value={String(row.grade)}
+                        aria-invalid={!isValidGrade(row.grade)}
                         onChange={(event) => updateRow(row.id, { grade: event.target.value })}
                       />
                     </td>
@@ -371,9 +380,17 @@ export default function AcademicProfilePage() {
               Add course row
             </button>
           </div>
+          {rows.some((row) => row.code.trim() && !isValidGrade(row.grade)) && (
+            <p className="notice" style={{ marginTop: "0.5rem" }}>
+              Some grades look unexpected. Use a number (0–100) or a letter grade like A, B+, or C-.
+            </p>
+          )}
         </div>
 
         {error && <p className="error">{error}</p>}
+        {loading && (
+          <p className="notice">Analyzing your profile — this may take a few seconds…</p>
+        )}
 
         <div>
           <button className="button button-primary" disabled={!canSubmit || loading} type="submit">

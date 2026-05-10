@@ -459,6 +459,11 @@ textarea:focus {
   outline-offset: 1px;
 }
 
+input[aria-invalid="true"] {
+  border-color: var(--danger);
+  background: #fff5f5;
+}
+
 .table {
   width: 100%;
   border-collapse: separate;

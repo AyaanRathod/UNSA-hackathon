@@ -102,7 +102,7 @@ function StudyReadableBody({ content }: { content: string }) {
 }
 
 function sortByPage<T extends { page?: number }>(items: T[]): T[] {
-  return [...items].sort((a, b) => (a.page ?? 0) - (b.page ?? 0));
+  return [...items].sort((a, b) => (a.page ?? Infinity) - (b.page ?? Infinity));
 }
 
 function fastApiDetail(details: unknown): string | undefined {
@@ -119,34 +119,27 @@ function fastApiDetail(details: unknown): string | undefined {
 function explainArtifactFailure(error: unknown): string {
   if (error instanceof ApiError) {
     if (error.status === 404) {
-      return (
-        "No study chunks on the server for this session (upload again if the backend data folder was cleared). " +
-        "Re-upload your PDF on Upload, then Generate again."
-      );
+      return "No uploaded content found for this session. Go to Upload, re-upload your PDF, then try again.";
     }
-    const detail = fastApiDetail(error.details);
-    return `Artifacts request failed (HTTP ${error.status})${detail ? `: ${detail}` : ""}. Showing local fallback.`;
+    return "Failed to generate artifacts. Please try again.";
   }
   if (error instanceof TypeError || (error instanceof Error && /fetch|network|failed/i.test(error.message))) {
-    return "Cannot reach the API. Confirm the backend is running on port 8000 and NEXT_PUBLIC_API_BASE_URL matches it, then restart Next.js.";
+    return "Can't reach the server. Make sure the backend is running, then refresh.";
   }
-  return "Artifacts endpoint unavailable; showing local fallback artifacts.";
+  return "Artifacts unavailable — showing local fallback content.";
 }
 
 function explainQaFailure(error: unknown): string {
   if (error instanceof ApiError) {
     if (error.status === 404) {
-      return (
-        "No study chunks on the server for this session. Re-upload your PDF on Upload, then try Q&A again."
-      );
+      return "No uploaded content found for this session. Go to Upload, re-upload your PDF, then try Q&A again.";
     }
-    const detail = fastApiDetail(error.details);
-    return `Q&A request failed (HTTP ${error.status})${detail ? `: ${detail}` : ""}. Showing local fallback.`;
+    return "Q&A request failed. Please try again.";
   }
   if (error instanceof TypeError || (error instanceof Error && /fetch|network|failed/i.test(error.message))) {
-    return "Cannot reach the API for grounded Q&A. Check backend on :8000 and env URL.";
+    return "Can't reach the server. Make sure the backend is running, then refresh.";
   }
-  return "Grounded QA endpoint unavailable; showing local citation-based fallback.";
+  return "Grounded Q&A unavailable — showing local fallback.";
 }
 
 function localArtifacts(filename: string): StudyArtifactsResponse {
@@ -270,6 +263,9 @@ export default function StudyWorkspacePage() {
                 ))}
               </ul>
               {selected?.warning && <p className="meta source-warning">{selected.warning}</p>}
+              <p className="meta" style={{ fontSize: "0.72rem", marginTop: "0.6rem", color: "var(--muted)" }}>
+                Documents are saved in your browser. Study content lives on the server — re-upload if the server restarts.
+              </p>
             </div>
           </aside>
 
@@ -286,6 +282,8 @@ export default function StudyWorkspacePage() {
                   key={artifactType}
                   type="button"
                   className={`chip-button ${activeArtifact === artifactType ? "active" : ""}`}
+                  aria-label={`Generate ${artifactLabels[artifactType]}`}
+                  aria-pressed={activeArtifact === artifactType}
                   onClick={() => setActiveArtifact(artifactType)}
                 >
                   {artifactLabels[artifactType]}
