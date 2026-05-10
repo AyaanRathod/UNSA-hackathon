@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { apiClient } from "@/lib/api/client";
+import { Spinner } from "@/components/Spinner";
 import type {
   CatalogProgramSummary,
   CompletedCourseInput,
@@ -211,17 +212,18 @@ export default function AcademicProfilePage() {
 
       <form className="stack" onSubmit={handleSubmit}>
         <div className="card">
-          <h3 className="profile-section-title">1 · Student info</h3>
+          <h3 className="profile-section-title"><span className="section-step" aria-hidden="true">1</span> Student info</h3>
           <p className="meta">These fields feed pathway recommendations. Inputs expand to full width on smaller screens.</p>
           <div className="profile-field-grid">
             <label>
-              Student ID
+              Student ID <span className="required-star" aria-hidden="true">*</span>
               <input
                 value={studentId}
                 onChange={(event) => setStudentId(event.target.value)}
                 required
                 placeholder="e.g. your Brock student number"
                 autoComplete="off"
+                aria-required="true"
               />
             </label>
             <label>
@@ -265,7 +267,7 @@ export default function AcademicProfilePage() {
 
         <div className="card intake-card">
           <div className="panel-title-row">
-            <h3 className="profile-section-title">2 · Quick intake (optional)</h3>
+            <h3 className="profile-section-title"><span className="section-step" aria-hidden="true">2</span> Quick intake <span className="meta" style={{ fontWeight: 400 }}>(optional)</span></h3>
             <span className="badge warning">beta</span>
           </div>
           <p className="meta">
@@ -290,7 +292,7 @@ export default function AcademicProfilePage() {
         </div>
 
         <div className="card">
-          <h3 className="profile-section-title">3 · Completed courses</h3>
+          <h3 className="profile-section-title"><span className="section-step" aria-hidden="true">3</span> Completed courses</h3>
           <p className="meta">Scroll horizontally on small screens if needed. Add or remove rows as needed.</p>
           <div className="profile-table-wrap">
             <table className="table">
@@ -387,15 +389,23 @@ export default function AcademicProfilePage() {
           )}
         </div>
 
-        {error && <p className="error">{error}</p>}
+        {error && <p className="error" role="alert">{error}</p>}
         {loading && (
-          <p className="notice">Analyzing your profile — this may take a few seconds…</p>
+          <p className="notice" role="status">Analyzing your profile — this may take a few seconds…</p>
         )}
 
-        <div>
-          <button className="button button-primary" disabled={!canSubmit || loading} type="submit">
-            {loading ? "Analyzing..." : "Submit profile for analysis"}
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <button className="button button-primary" disabled={!canSubmit || loading} type="submit" aria-busy={loading}>
+            <span className="button-inner">
+              {loading && <Spinner size="sm" />}
+              {loading ? "Analyzing…" : "Submit profile for analysis"}
+            </span>
           </button>
+          {!canSubmit && !loading && (
+            <span className="meta" style={{ fontSize: "0.82rem" }}>
+              {!studentId.trim() ? "Enter a Student ID to continue." : "Add at least one course code to continue."}
+            </span>
+          )}
         </div>
       </form>
     </section>

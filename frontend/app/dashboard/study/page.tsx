@@ -1,7 +1,9 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { apiClient, ApiError } from "@/lib/api/client";
+import { Spinner } from "@/components/Spinner";
 import type { StudyArtifactsResponse, StudyCitation, StudyQaResponse, UploadedDocument } from "@/lib/api/types";
 import { appStorage } from "@/lib/storage";
 
@@ -237,7 +239,13 @@ export default function StudyWorkspacePage() {
       </p>
 
       {documents.length === 0 ? (
-        <p className="empty-state">No documents found. Upload PDFs first to open the study workspace.</p>
+        <div className="empty-state stack" style={{ gap: "0.75rem" }}>
+          <p>No documents yet.</p>
+          <p>Upload a PDF first to unlock grounded artifacts and Q&amp;A.</p>
+          <Link href="/dashboard/upload" className="button button-primary" style={{ justifySelf: "start" }}>
+            Go to Upload
+          </Link>
+        </div>
       ) : (
         <div className="notebook-shell study-workspace-grid">
           <aside className="notebook-column card study-column">
@@ -289,8 +297,11 @@ export default function StudyWorkspacePage() {
                   {artifactLabels[artifactType]}
                 </button>
               ))}
-              <button className="button button-primary" onClick={handleGenerateArtifacts} disabled={!selected || busy}>
-                {busy ? "Working..." : "Generate"}
+              <button className="button button-primary" onClick={handleGenerateArtifacts} disabled={!selected || busy} aria-busy={busy}>
+                <span className="button-inner">
+                  {busy && <Spinner size="sm" />}
+                  {busy ? "Working…" : "Generate"}
+                </span>
               </button>
             </div>
             <div className="study-column-scroll study-studio-scroll">
@@ -337,8 +348,11 @@ export default function StudyWorkspacePage() {
                   onChange={(event) => setQaQuestion(event.target.value)}
                 />
               </label>
-              <button className="button button-primary" disabled={!selected || busy || !qaQuestion.trim()} type="submit">
-                Answer with citations
+              <button className="button button-primary" disabled={!selected || busy || !qaQuestion.trim()} type="submit" aria-busy={busy}>
+                <span className="button-inner">
+                  {busy && <Spinner size="sm" />}
+                  {busy ? "Searching…" : "Answer with citations"}
+                </span>
               </button>
             </form>
             <div className="study-column-scroll study-qa-scroll">
