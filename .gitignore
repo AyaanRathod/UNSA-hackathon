@@ -15,6 +15,9 @@ npm-debug.log*
 .env
 *.env.local
 
+# Local study RAG cache (uploaded PDF chunks; do not commit)
+backend/data/study_sessions/
+
 # OS/Editor
 .DS_Store
 Thumbs.db

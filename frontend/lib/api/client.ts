@@ -1,5 +1,6 @@
 import type {
   AnalyzeProfileResponse,
+  CatalogProgramSummary,
   FrenchDemoResponse,
   TranscriptParseResponse,
   StudentProfileInput,
@@ -80,6 +81,7 @@ export const endpointAliases = {
   generateArtifacts: ["/api/study/artifacts", "/api/study/generate"],
   askGroundedQuestion: ["/api/study/qa", "/api/study/question"],
   frenchDemo: ["/api/i18n/french-demo", "/api/study/french-demo"],
+  catalogPrograms: ["/api/catalog/programs"],
 } as const;
 
 interface BackendIngestResponse {
@@ -157,6 +159,12 @@ export const apiClient = {
     });
   },
 
+  async listCatalogPrograms(): Promise<CatalogProgramSummary[]> {
+    return requestWithFallback<CatalogProgramSummary[]>({
+      pathCandidates: [...endpointAliases.catalogPrograms],
+    });
+  },
+
   async parseTranscriptFile(file: File): Promise<TranscriptParseResponse> {
     const formData = new FormData();
     formData.append("file", file);
@@ -208,11 +216,15 @@ export const apiClient = {
   async generateStudyArtifacts(
     sessionId: string,
     artifactType: StudyArtifactsResponse["artifact_type"] = "summary",
+    topK?: number,
   ): Promise<StudyArtifactsResponse> {
+    const resolvedTopK =
+      topK ??
+      (artifactType === "summary" ? 14 : artifactType === "glossary" ? 16 : artifactType === "self_test" ? 12 : 18);
     const response = await requestWithFallback<BackendArtifactResponse>({
       method: "POST",
       pathCandidates: [...endpointAliases.generateArtifacts],
-      body: { session_id: sessionId, artifact_type: artifactType },
+      body: { session_id: sessionId, artifact_type: artifactType, top_k: resolvedTopK },
     });
     return {
       session_id: response.session_id,
@@ -223,11 +235,11 @@ export const apiClient = {
     };
   },
 
-  async askGroundedQuestion(payload: { question: string; session_id: string }): Promise<StudyQaResponse> {
+  async askGroundedQuestion(payload: { question: string; session_id: string; top_k?: number }): Promise<StudyQaResponse> {
     const response = await requestWithFallback<BackendQaResponse>({
       method: "POST",
       pathCandidates: [...endpointAliases.askGroundedQuestion],
-      body: payload,
+      body: { ...payload, top_k: payload.top_k ?? 14 },
     });
     return {
       session_id: response.session_id,

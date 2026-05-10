@@ -36,9 +36,9 @@ const modules = [
 export default function DashboardHomePage() {
   return (
     <section className="stack">
-      <div className="hero">
+      <div className="hero dashboard-hero-wide">
         <h1>Pathwise Command Center</h1>
-        <p className="meta">
+        <p className="meta dashboard-home-lede">
           Build your profile once, then move between planning, career fit, and grounded study support in one workspace.
         </p>
         <div className="hero-actions">

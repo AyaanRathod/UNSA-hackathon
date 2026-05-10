@@ -18,12 +18,15 @@ def polish_profile_response_with_watsonx(
 ) -> AnalyzeProfileResponse:
     if not watsonx_client.status.ready:
         for rec in response.recommendations:
-            rec.polished_why = _fallback_course_rationale(rec.why, rec.score, rec.label)
+            if not rec.polished_why:
+                rec.polished_why = _fallback_course_rationale(rec.why, rec.score, rec.label)
         for career in response.career_matches:
             career.narrative = _fallback_career_rationale(career.why, career.score)
         return response
 
     for rec in response.recommendations:
+        if rec.polished_why:
+            continue
         prompt = (
             "You are polishing a course recommendation explanation.\n"
             "Ground only in deterministic evidence provided.\n"

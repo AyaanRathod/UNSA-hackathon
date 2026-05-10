@@ -137,6 +137,47 @@ def test_missing_coreq_is_not_eligible():
     assert result.reason == "missing_corequisites"
 
 
+def test_program_track_filters_to_subject_prefixes():
+    """When catalog includes program definitions, only matching subjects are recommended."""
+    courses = [
+        {
+            "code": "COSC1P03",
+            "title": "Intro II",
+            "credits": 0.5,
+            "clusters": ["programming"],
+            "prerequisites": {"requires_all": [], "requires_one_of": [], "coreq": []},
+        },
+        {
+            "code": "FNCE2P91",
+            "title": "Corporate Finance I",
+            "credits": 0.5,
+            "clusters": ["business", "finance"],
+            "prerequisites": {"requires_all": [], "requires_one_of": [], "coreq": []},
+        },
+    ]
+    programs = [
+        {
+            "program_id": "brock-cs-bsc",
+            "name": "CS",
+            "subject_prefixes": ["COSC", "MATH"],
+            "required_core": [],
+            "recommended_supporting": [],
+            "sample_upper_year_options": [],
+        }
+    ]
+    catalog = Catalog(courses=courses, programs=programs, career_paths=[])
+    profile = StudentProfileInput(
+        student_id="t4",
+        completed_courses=[],
+        goals=[],
+        program_id="brock-cs-bsc",
+    )
+    response = analyze_profile(profile, catalog)
+    codes = {r.course_code for r in response.recommendations}
+    assert "COSC1P03" in codes
+    assert "FNCE2P91" not in codes
+
+
 def test_career_matches_return_ranked_items():
     profile = StudentProfileInput(
         student_id="s3",

@@ -1,221 +1,5640 @@
 [
   {
-    "code": "COSC1P02",
-    "title": "Introduction to Computer Science I",
+    "code": "ACTG1P01",
+    "title": "Introduction to Financial Accounting",
     "credits": 0.5,
-    "clusters": ["programming"],
-    "tags": ["programming", "foundational"],
-    "prerequisites": { "requires_all": [], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG1P02",
+    "title": "Introduction to Managerial Accounting",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG1P11",
+    "title": "1P91 and 2P51 .",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG1P12",
+    "title": "2P12 and 2P51 .",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG1P71",
+    "title": "ACTG1P71 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG1P91",
+    "title": "Introduction to Financial Accounting",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG2P12",
+    "title": "Introduction to Management Accounting",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG2P21",
+    "title": "Cost and Managerial Accounting I",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG2P31",
+    "title": "Accounting for External Reporting I",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG2P32",
+    "title": "Accounting for External Reporting II",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG2P40",
+    "title": "Commercial Law",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG2P51",
+    "title": "Understanding Accounting",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG2P97",
+    "title": "Accounting and Technology",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG3P11",
+    "title": "Auditing Concepts",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG3P23",
+    "title": "Cost and Managerial Accounting II",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG3P33",
+    "title": "Accounting for External Reporting III",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG3P41",
+    "title": "Taxation I",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG3P43",
+    "title": "Taxation 1",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG3P63",
+    "title": "ACTG 4P91",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG3P97",
+    "title": "Accounting Information Systems",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P03",
+    "title": "Importance and use of financial statement information in areas such as analysis of credit, equity investment, industry and competitors, analysis of mergers...",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P11",
+    "title": "Accounting Theory",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P12",
+    "title": "Integration and Problem Solving",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P34",
+    "title": "Accounting for External Reporting IV",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P40",
+    "title": "Tax Strategies for Planning and Decision Making",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P41",
+    "title": "ACTG 3P63",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P42",
+    "title": "Taxation III",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P43",
+    "title": "Taxation 2",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P61",
+    "title": "External Auditing I",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P62",
+    "title": "External Auditing II",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P63",
+    "title": "Assurance II",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ACTG4P97",
+    "title": "Accounting Analytics",
+    "credits": 0.5,
+    "clusters": [
+      "accounting",
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "APCO1P00",
+    "title": "or 4U Mathematics credit.",
+    "credits": 0.5,
+    "clusters": [
+      "general"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "APCO1P30",
+    "title": "involves programming for interactive media and assumes no prior programming experience but does assume familiarity with computer applications.",
+    "credits": 0.5,
+    "clusters": [
+      "general"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "APCO1P50",
+    "title": "considers effective and ethical use of computers for information acquisition and dissemination. It requires no previous computing skill.",
+    "credits": 0.5,
+    "clusters": [
+      "general"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "APCO1P93",
+    "title": "will usually serve as a second programming course but can also serve as an introductory programming course for those who need a more technical introduction to programming.",
+    "credits": 0.5,
+    "clusters": [
+      "general"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "APCO2P01",
+    "title": "#APCO 2P61 Website Creation (also offered as STAC 2P61 and VISA 2P61 ) Creative approaches to basic technical and design foundations of website design and...",
+    "credits": 0.5,
+    "clusters": [
+      "general"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "APCO2P89",
+    "title": "IASC 2P89 ) Concepts and techniques required for building and maintaining advanced interactive Web sites",
+    "credits": 0.5,
+    "clusters": [
+      "general"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "APCO2P99",
+    "title": "Project in Applied Computing",
+    "credits": 0.5,
+    "clusters": [
+      "general"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "APCO3P94",
+    "title": "IASC 3P94 ) Human factors in the design and support of computing systems",
+    "credits": 0.5,
+    "clusters": [
+      "general"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC0N01",
+    "title": "Co-op Work Placement I",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC0N02",
+    "title": "Co-op Work Placement II",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC0N03",
+    "title": "Co-op Work Placement III",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC0N04",
+    "title": "Co-op Work Placement IV",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC0N05",
+    "title": "Co-op Work Placement V",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC1P02",
+    "title": "Introduction to Computer Science",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC1P03",
-    "title": "Introduction to Computer Science II",
+    "title": "Introduction to Data Structures",
     "credits": 0.5,
-    "clusters": ["programming", "theory"],
-    "tags": ["programming", "foundational"],
-    "prerequisites": { "requires_all": ["COSC1P02"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "data",
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC1P50",
-    "title": "Introduction to Discrete Structures",
+    "title": "IASC 1P50 ) Issues in use of information technology including historic and social perspectives; legal, ethical and moral issues; intellectual property,...",
     "credits": 0.5,
-    "clusters": ["math", "theory"],
-    "tags": ["math-heavy", "theory"],
-    "prerequisites": { "requires_all": [], "requires_one_of": [], "coreq": [] }
-  },
-  {
-    "code": "MATH1P97",
-    "title": "Calculus I",
-    "credits": 0.5,
-    "clusters": ["math"],
-    "tags": ["math-heavy", "foundational"],
-    "prerequisites": { "requires_all": [], "requires_one_of": [], "coreq": [] }
-  },
-  {
-    "code": "MATH1P98",
-    "title": "Calculus II",
-    "credits": 0.5,
-    "clusters": ["math"],
-    "tags": ["math-heavy"],
-    "prerequisites": { "requires_all": ["MATH1P97"], "requires_one_of": [], "coreq": [] }
-  },
-  {
-    "code": "STAT1P98",
-    "title": "Introduction to Statistics",
-    "credits": 0.5,
-    "clusters": ["data", "math"],
-    "tags": ["statistics", "data"],
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
     "prerequisites": {
       "requires_all": [],
-      "requires_one_of": [["MATH1P97", "MATH1P98"]],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC1P71",
+    "title": "Essentials of Artificial Intelligence",
+    "credits": 0.5,
+    "clusters": [
+      "ai",
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC2C01",
+    "title": "Co-op Reflective Learning and Integration I",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC2C02",
+    "title": "Co-op Reflective Learning and Integration II",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC2C03",
+    "title": "Co-op Reflective Learning and Integration III",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC2C04",
+    "title": "Co-op Reflective Learning and Integration IV",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC2C05",
+    "title": "Co-op Reflective Learning and Integration V",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
       "coreq": []
     }
   },
   {
     "code": "COSC2P03",
-    "title": "Data Structures",
+    "title": "Advanced Data Structures",
     "credits": 0.5,
-    "clusters": ["programming", "theory"],
-    "tags": ["programming", "algorithms"],
-    "prerequisites": { "requires_all": ["COSC1P03"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "data",
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [
+        "COSC1P03"
+      ],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC2P05",
     "title": "Programming Languages",
     "credits": 0.5,
-    "clusters": ["programming", "theory"],
-    "tags": ["programming", "theory"],
-    "prerequisites": { "requires_all": ["COSC2P03"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [
+        "COSC2P03"
+      ],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC2P12",
     "title": "Introduction to Computer Architecture",
     "credits": 0.5,
-    "clusters": ["systems"],
-    "tags": ["systems", "hardware"],
-    "prerequisites": { "requires_all": ["COSC1P03"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "programming",
+      "systems"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [
+        "COSC1P03"
+      ],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC2P13",
-    "title": "Computer Systems",
+    "title": "Introduction to Operating Systems",
     "credits": 0.5,
-    "clusters": ["systems", "programming"],
-    "tags": ["systems", "project-heavy"],
-    "prerequisites": { "requires_all": ["COSC2P12"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "programming",
+      "systems"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC2P32",
+    "title": "COSC2P32 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC2P89",
-    "title": "Internet Technologies",
+    "title": "IASC 2P89 ) Concepts and techniques for building and maintaining advanced interactive Web sites",
     "credits": 0.5,
-    "clusters": ["programming", "systems", "ux"],
-    "tags": ["web", "project-heavy", "UX"],
-    "prerequisites": { "requires_all": ["COSC2P03"], "requires_one_of": [], "coreq": [] }
-  },
-  {
-    "code": "COSC2P95",
-    "title": "Database Systems",
-    "credits": 0.5,
-    "clusters": ["data", "programming"],
-    "tags": ["data", "project-heavy"],
+    "clusters": [
+      "ai",
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
     "prerequisites": {
-      "requires_all": ["COSC2P03"],
-      "requires_one_of": [["STAT1P98", "MATH1P98"]],
+      "requires_all": [],
+      "requires_one_of": [],
       "coreq": []
     }
   },
   {
     "code": "COSC2P90",
-    "title": "Software Engineering I",
+    "title": "3P05",
     "credits": 0.5,
-    "clusters": ["programming", "project"],
-    "tags": ["project-heavy", "programming"],
-    "prerequisites": { "requires_all": ["COSC2P03"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC2P91",
     "title": "Software Engineering II",
     "credits": 0.5,
-    "clusters": ["programming", "project"],
-    "tags": ["project-heavy", "programming"],
-    "prerequisites": { "requires_all": ["COSC2P90"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "programming",
+      "project"
+    ],
+    "tags": [
+      "project-heavy",
+      "programming"
+    ],
+    "prerequisites": {
+      "requires_all": [
+        "COSC2P90"
+      ],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC2P95",
+    "title": "Programming in C++ with Applications",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P01",
+    "title": "Computer Networking",
+    "credits": 0.5,
+    "clusters": [
+      "programming",
+      "systems"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC3P03",
     "title": "Algorithms",
     "credits": 0.5,
-    "clusters": ["theory", "programming"],
-    "tags": ["algorithms", "theory", "math-heavy"],
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
     "prerequisites": {
-      "requires_all": ["COSC2P03", "COSC1P50"],
+      "requires_all": [
+        "COSC2P03",
+        "COSC1P50"
+      ],
       "requires_one_of": [],
       "coreq": [],
-      "min_grade_by_course": { "COSC2P03": 60 }
+      "min_grade_by_course": {
+        "COSC2P03": 60
+      }
     }
   },
   {
     "code": "COSC3P32",
-    "title": "Operating Systems",
+    "title": "Database Systems",
     "credits": 0.5,
-    "clusters": ["systems", "programming"],
-    "tags": ["systems", "project-heavy"],
-    "prerequisites": { "requires_all": ["COSC2P13"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "data",
+      "programming",
+      "systems"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P40",
+    "title": "COSC3P40 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC3P71",
-    "title": "Introduction to Artificial Intelligence",
+    "title": "Artificial Intelligence",
     "credits": 0.5,
-    "clusters": ["ai", "theory", "data"],
-    "tags": ["AI", "theory", "data"],
+    "clusters": [
+      "ai",
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
     "prerequisites": {
-      "requires_all": ["COSC2P03"],
-      "requires_one_of": [["COSC3P03", "STAT1P98"]],
+      "requires_all": [
+        "COSC2P03"
+      ],
+      "requires_one_of": [
+        [
+          "COSC3P03",
+          "STAT1P98"
+        ]
+      ],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P90",
+    "title": "Software Development",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P91",
+    "title": "Advanced Object-Oriented Programming",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P92",
+    "title": "Computer Architecture",
+    "credits": 0.5,
+    "clusters": [
+      "programming",
+      "systems"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P93",
+    "title": "Parallel Computing",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P94",
+    "title": "IASC 3P94 ) Human factors in the design and support of computing systems",
+    "credits": 0.5,
+    "clusters": [
+      "programming",
+      "systems",
+      "ux"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P95",
+    "title": "Software Analysis and Testing",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P96",
+    "title": "Machine Learning",
+    "credits": 0.5,
+    "clusters": [
+      "ai",
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
       "coreq": []
     }
   },
   {
     "code": "COSC3P97",
-    "title": "Mobile and Pervasive Computing",
+    "title": "Mobile Computing",
     "credits": 0.5,
-    "clusters": ["programming", "systems", "ux"],
-    "tags": ["project-heavy", "UX", "systems"],
-    "prerequisites": { "requires_all": ["COSC2P89"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [
+        "COSC2P89"
+      ],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC3P98",
-    "title": "Human-Computer Interaction",
+    "title": "Computer Graphics",
     "credits": 0.5,
-    "clusters": ["ux", "project"],
-    "tags": ["UX", "project-heavy"],
-    "prerequisites": { "requires_all": ["COSC2P89"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "programming",
+      "ux"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3P99",
+    "title": "Computing Project",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3Q95",
+    "title": "Internship in Game Programming",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC3V97",
+    "title": "COSC3V97 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4F00",
+    "title": "COSC4F00 (calendar entry incomplete in source scrape)",
+    "credits": 1.0,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4F90",
+    "title": "Computing Project",
+    "credits": 1.0,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P01",
+    "title": "Software Engineering 1",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P02",
+    "title": "Software Engineering 2",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P03",
+    "title": "Advanced Algorithms",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P04",
+    "title": "Graph Drawing and Information Visualization",
+    "credits": 0.5,
+    "clusters": [
+      "programming",
+      "ux"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P13",
+    "title": "Operating Systems: Design and Implementation",
+    "credits": 0.5,
+    "clusters": [
+      "programming",
+      "systems"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC4P14",
-    "title": "Computer Networks",
+    "title": "Advanced Computer Networks",
     "credits": 0.5,
-    "clusters": ["systems"],
-    "tags": ["systems", "networking"],
-    "prerequisites": { "requires_all": ["COSC2P13"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "programming",
+      "systems"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [
+        "COSC2P13"
+      ],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC4P32",
     "title": "Advanced Database Systems",
     "credits": 0.5,
-    "clusters": ["data", "programming"],
-    "tags": ["data", "project-heavy"],
-    "prerequisites": { "requires_all": ["COSC2P95"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "data",
+      "programming",
+      "systems"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [
+        "COSC2P95"
+      ],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P41",
+    "title": "Functional Programming",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P42",
+    "title": "Formal Methods in Software Engineering",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P50",
+    "title": "Introduction to Cyber Security",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P61",
+    "title": "one COSC credit numbered 3(alpha)00 or higher (see",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC4P76",
     "title": "Machine Learning",
     "credits": 0.5,
-    "clusters": ["ai", "data", "math"],
-    "tags": ["AI", "data", "math-heavy"],
+    "clusters": [
+      "ai",
+      "data",
+      "math"
+    ],
+    "tags": [
+      "AI",
+      "data",
+      "math-heavy"
+    ],
     "prerequisites": {
-      "requires_all": ["COSC3P03", "STAT1P98"],
-      "requires_one_of": [["MATH1P98", "COSC3P71"]],
+      "requires_all": [
+        "COSC3P03",
+        "STAT1P98"
+      ],
+      "requires_one_of": [
+        [
+          "MATH1P98",
+          "COSC3P71"
+        ]
+      ],
       "coreq": []
     },
-    "restricted_to": ["cs_major"]
+    "restricted_to": [
+      "cs_major"
+    ]
+  },
+  {
+    "code": "COSC4P78",
+    "title": "Robotics",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC4P80",
-    "title": "Computer Security",
+    "title": "Artificial Neural Networks",
     "credits": 0.5,
-    "clusters": ["systems", "theory"],
-    "tags": ["systems", "security"],
-    "prerequisites": { "requires_all": ["COSC3P32"], "requires_one_of": [], "coreq": [] }
+    "clusters": [
+      "programming",
+      "systems"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P81",
+    "title": "AI Programming",
+    "credits": 0.5,
+    "clusters": [
+      "ai",
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P82",
+    "title": "Genetic Programming",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P83",
+    "title": "Reinforcement Learning",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P84",
+    "title": "Natural Language Processing",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   },
   {
     "code": "COSC4P90",
     "title": "Capstone Project",
     "credits": 1.0,
-    "clusters": ["project", "programming"],
-    "tags": ["project-heavy"],
+    "clusters": [
+      "project",
+      "programming"
+    ],
+    "tags": [
+      "project-heavy"
+    ],
     "prerequisites": {
-      "requires_all": ["COSC2P91"],
-      "requires_one_of": [["COSC3P32", "COSC2P95"]],
-      "coreq": ["COSC4P14"]
+      "requires_all": [
+        "COSC2P91"
+      ],
+      "requires_one_of": [
+        [
+          "COSC3P32",
+          "COSC2P95"
+        ]
+      ],
+      "coreq": [
+        "COSC4P14"
+      ]
     },
-    "restricted_to": ["cs_major", "combined_major"]
+    "restricted_to": [
+      "cs_major",
+      "combined_major"
+    ]
+  },
+  {
+    "code": "COSC4P96",
+    "title": "Topics in Computational Intelligence",
+    "credits": 0.5,
+    "clusters": [
+      "ai",
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4P98",
+    "title": "Topics in Computer Media and Digital Audio",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "COSC4V96",
+    "title": "COSC4V96 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "programming"
+    ],
+    "tags": [
+      "calendar-2024-2025"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ETHC2P51",
+    "title": "Business, Society, and Ethics",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ETHC3P82",
+    "title": ". This course may be offered in multiple modes of delivery. The method of delivery will be listed on the academic timetable, in the applicable term.",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE2P50",
+    "title": "Introduction to Personal Financial Planning",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE2P51",
+    "title": "Introduction to Finance",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE2P91",
+    "title": "Corporate Finance I",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE3P93",
+    "title": "Corporate Finance II",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE3P95",
+    "title": "Personal Financial Planning",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE3P96",
+    "title": "Financial Theory",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4F90",
+    "title": "Research Topic",
+    "credits": 1.0,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P02",
+    "title": "Corporate Financial Policy",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P03",
+    "title": "Importance and use of financial statement information in areas such as analysis of credit, equity investment, industry and competitors, analysis of mergers...",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P04",
+    "title": "Investment Analysis and Portfolio Management",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P05",
+    "title": "International Finance",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P08",
+    "title": "Management of Financial Institutions",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P09",
+    "title": "Portfolio Management",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P15",
+    "title": "Advanced Topics in Financial Theory",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P16",
+    "title": "Derivatives I",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P17",
+    "title": "Derivatives II",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P18",
+    "title": "Fixed Income Securities",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P19",
+    "title": "Fintech with Blockchain and Cryptocurrencies",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P20",
+    "title": "Financial Modeling and Analytics",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "FNCE4P91",
+    "title": "Research Topic",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "finance"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS1P97",
+    "title": "Note: this course may be offered in multiple modes of delivery. The method of delivery will be listed on the academic timetable, in the applicable term.",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS2P51",
+    "title": "Introduction to Information Systems",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "data"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS2P91",
+    "title": "Management of Information Systems and Technology",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "data"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS3P91",
+    "title": "Quantitative Methods for Information Systems",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "data"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS3P92",
+    "title": "Information Assurance",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS3P98",
+    "title": "Fundamentals of Database Design and Management",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "data"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS4F90",
+    "title": "Research Topic",
+    "credits": 1.0,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS4P21",
+    "title": "Note: this course may be offered in multiple modes of delivery. The method of delivery will be listed on the academic timetable, in the applicable term.",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS4P22",
+    "title": "e-Business Applications",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS4P23",
+    "title": "Advanced Business Analytics",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "data"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS4P25",
+    "title": "Systems Analysis and Design",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS4P26",
+    "title": "Supply chain modelling and performance",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS4P27",
+    "title": "ITIS4P27 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "ITIS4P91",
+    "title": "Research Topic",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH0N01",
+    "title": "Co-op Work Placement I",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH0N02",
+    "title": "Co-op Work Placement II",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH0N03",
+    "title": "Co-op Work Placement III",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH0N04",
+    "title": "Co-op Work Placement IV",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH0N05",
+    "title": "Co-op Work Placement V",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P01",
+    "title": "Calculus Concepts I",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P02",
+    "title": "Calculus Concepts II",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P05",
+    "title": "Applied Calculus I",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P06",
+    "title": "Applied Calculus II",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P07",
+    "title": "Applied Calculus I For Engineers",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P08",
+    "title": "Note: This course may be offered in multiple modes of delivery. The method of delivery will be listed on the academic timetable, in the applicable term",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P11",
+    "title": "MATH1P11 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P12",
+    "title": "Applied Linear Algebra",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P13",
+    "title": "Linear Algebra For Engineers",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P20",
+    "title": "Introduction to Mathematics",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P40",
+    "title": "Mathematics Integrated with Computers and Applications I",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P66",
+    "title": "Mathematical Reasoning",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P67",
+    "title": "Mathematics for Computer Science",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P70",
+    "title": "Mathematics in Culture",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P97",
+    "title": "Calculus With Applications",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P98",
+    "title": "or in",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH1P99",
+    "title": "is not permitted and credit will not be counted.",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2C01",
+    "title": "Co-op Reflective Learning and Integration I",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2C02",
+    "title": "Co-op Reflective Learning and Integration II",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2C03",
+    "title": "Co-op Reflective Learning and Integration III",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2C04",
+    "title": "Co-op Reflective Learning and Integration IV",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2C05",
+    "title": "Co-op Reflective Learning and Integration V",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2F40",
+    "title": "MATH2F40 (calendar entry incomplete in source scrape)",
+    "credits": 1.0,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P03",
+    "title": ". This course may be offered in multiple modes of delivery. The method of delivery will be listed on the academic timetable, in the applicable term.",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P04",
+    "title": "Basic Concepts of Analysis",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P08",
+    "title": "Ordinary Differential Equations",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P12",
+    "title": "is recommended. This course may be offered in multiple modes of delivery. The method of delivery will be listed on the academic timetable, in the applicable term.",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P13",
+    "title": "Linear Algebra III - Advanced",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P40",
+    "title": "Mathematics Integrated with Computers and Applications II",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P52",
+    "title": "Principles of Mathematics for Primary and Junior Teachers",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P71",
+    "title": "MATH2P71 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P72",
+    "title": "MATH2P72 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P75",
+    "title": "Introductory Financial Mathematics",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P77",
+    "title": "MATH2P77 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P81",
+    "title": "STAT 2P82",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P82",
+    "title": "STAT 2P83",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P90",
+    "title": "Euclidean and Non-Euclidean Geometry I",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P91",
+    "title": "Discrete Optimization",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P92",
+    "title": "Introduction to Combinatorics",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P93",
+    "title": "MATH2P93 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P94",
+    "title": "Introduction to Network Analysis",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P95",
+    "title": "Mathematics and Music",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P96",
+    "title": "Mathematical Methods in Physics",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P97",
+    "title": "Problem Solving",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH2P98",
+    "title": "MATH2P98 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P03",
+    "title": "Real Analysis",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P04",
+    "title": "Complex Analysis",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P06",
+    "title": "Vector Calculus and Differential Geometry",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P08",
+    "title": "Advanced Differential Equations",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P09",
+    "title": "Partial Differential Equations",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P12",
+    "title": "Applied Algebra",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P13",
+    "title": "Abstract Algebra",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P23",
+    "title": "Great Moments in Mathematics I",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P30",
+    "title": "Introduction to Actuarial Modeling",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P40",
+    "title": "Mathematics Integrated with Computers and Applications III",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P41",
+    "title": "Visual and Interactive Mathematics Through Programming",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P51",
+    "title": "Applied Mathematics with Maple",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P52",
+    "title": "Partial Differential Equations in C++",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P60",
+    "title": "Numerical Methods",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P72",
+    "title": "Continuous Optimization",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P73",
+    "title": "MATH3P73 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P75",
+    "title": "Theory of Financial Mathematics",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P81",
+    "title": "MATH3P81 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P82",
+    "title": "MATH3P82 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P85",
+    "title": "MATH3P85 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P86",
+    "title": "#STAT 3P87 Statistical Computing with R (also offered as DASA 3P87 ) Introduction to the R language for data manipulation, graphical exploration, and...",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P90",
+    "title": "MATH3P90 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P91",
+    "title": "Mathematics at the Junior/Intermediate/Senior Level",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P93",
+    "title": "MATH3P93 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P94",
+    "title": "Symmetry Groups, Matrix Representations and Applications",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P95",
+    "title": "3P94 , 3P95 , 4P03 , 4P06 , 4P09 4P11 or 4P13 , 4P71 , 4P92 , 4P94 Concentration in Mathematics Education The Concentration in Mathematics Education program...",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P96",
+    "title": "Computational Ergodic Theory and Dynamical Systems",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P97",
+    "title": "Introductory Topology",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH3P98",
+    "title": "Functional Analysis",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4F90",
+    "title": "Honours Project",
+    "credits": 1.0,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P03",
+    "title": "Advanced Real Analysis",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P06",
+    "title": "Special Topics",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P09",
+    "title": "4P11 , 4P92 , 4P94 ,",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P11",
+    "title": "Topics in Groups",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P13",
+    "title": "Topics in Rings and Modules",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P23",
+    "title": "Great Moments in Mathematics II",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P30",
+    "title": "Advanced Topics in Actuarial Modeling",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P71",
+    "title": "Combinatorics",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P81",
+    "title": "MATH4P81 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P82",
+    "title": "MATH4P82 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P84",
+    "title": "MATH4P84 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P85",
+    "title": "MATH4P85 (calendar entry incomplete in source scrape)",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P90",
+    "title": "Euclidean and Non Euclidean Geometry II",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P92",
+    "title": "Topics in Number Theory and Cryptography",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MATH4P96",
+    "title": "Technology and Mathematics Education",
+    "credits": 0.5,
+    "clusters": [
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "math-heavy"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT1P51",
+    "title": "1P52 .",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT1P93",
+    "title": "Principles of Business",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT1P96",
+    "title": "Principles of Communication in the Business Environment",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT3P98",
+    "title": "International Business",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT3P99",
+    "title": "Business Case Analysis and Action",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT4F90",
+    "title": "Research Topic",
+    "credits": 1.0,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT4P35",
+    "title": "Export Strategy and Management",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT4P36",
+    "title": "Business in Developing Countries",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT4P90",
+    "title": "Business Strategy",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT4P91",
+    "title": "Research Topic",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT4P94",
+    "title": "Transnational Business Management",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT4P96",
+    "title": "Business and Society",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT4P97",
+    "title": "Advanced Topics in Business and Society",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MGMT4P99",
+    "title": "Management Consulting",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG2P51",
+    "title": "Marketing Basics",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG2P52",
+    "title": "General Marketing Management",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG2P91",
+    "title": "Introduction to Marketing",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG3P24",
+    "title": "Note: this course may be offered in multiple modes of delivery. The method of delivery will be listed on the academic timetable, in the applicable term.",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG3P96",
+    "title": "Marketing Research",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG3P97",
+    "title": "Marketing of High-Technology Products and Innovations",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG3P98",
+    "title": "Marketing Analytics and Intelligence",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4F90",
+    "title": "Research Topic",
+    "credits": 1.0,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P23",
+    "title": "Marketing Communications",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P25",
+    "title": "Marketing Strategy",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P26",
+    "title": "Professional Selling and Sales Management",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P28",
+    "title": "Retail Management",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P29",
+    "title": "Business to Business Marketing",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P31",
+    "title": "Consumer Behaviour",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P33",
+    "title": "International Marketing",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P34",
+    "title": "Marketing Financial Services",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P36",
+    "title": "Marketing Channel Management",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P37",
+    "title": "Augmented Reality Marketing",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P38",
+    "title": "Metaverse Marketing",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P91",
+    "title": "Research Topic",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P93",
+    "title": "Internet and Social Media Marketing",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P94",
+    "title": "New Product Development",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P95",
+    "title": "Services Marketing",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "MKTG4P98",
+    "title": "Pricing",
+    "credits": 0.5,
+    "clusters": [
+      "business",
+      "marketing"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR2P51",
+    "title": "Basics of Organizational Behaviour and Design",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR2P52",
+    "title": "Basics of Human Resources Management and Industrial Relations",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR2P91",
+    "title": "Organizational Behaviour",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR2P92",
+    "title": "Fundamentals of Equity, Diversity, Inclusion for Business Sustainability",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR3P42",
+    "title": "Organizational Structure and Redesign",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR3P96",
+    "title": "Labour Relations",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR3P97",
+    "title": "Human Resource Management",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR3P98",
+    "title": "Occupational Health and Safety",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR3P99",
+    "title": "Techniques and methods of conducting reliable and valid research including theory and hypothesis testing, measurement, survey and experimental design, and...",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4F90",
+    "title": "Research Topic",
+    "credits": 1.0,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P65",
+    "title": "Negotiating in Organizations",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P66",
+    "title": "Compensation Management",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P67",
+    "title": "Training and Development",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P68",
+    "title": "Leadership",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P69",
+    "title": "Recruitment and Selection",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P72",
+    "title": "Labour Law",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P90",
+    "title": "International Organizational Behaviour",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P91",
+    "title": "Research Topic",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P93",
+    "title": "Leading Change",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P94",
+    "title": "Human Resources Planning",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P95",
+    "title": "Equity, Diversity and Inclusion (EDI)",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4P96",
+    "title": "Labour Arbitration",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OBHR4V98",
+    "title": "2023-2024: HR Analytics",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER2P51",
+    "title": "General Operations Management",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER2P91",
+    "title": "Operations Management",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER3P91",
+    "title": "Advanced Operations Management",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER3P92",
+    "title": "Project Management",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER3P93",
+    "title": "Quality Management",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER3P94",
+    "title": "Games of Strategy",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER4F90",
+    "title": "Research Topic",
+    "credits": 1.0,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER4P26",
+    "title": "Supply chain modelling and performance",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER4P31",
+    "title": "Simulation of Business Systems",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER4P41",
+    "title": "Management Science",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "OPER4P91",
+    "title": "Research Topic",
+    "credits": 0.5,
+    "clusters": [
+      "business"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "goodman-business"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT1F92",
+    "title": "Introductory Statistics",
+    "credits": 1.0,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT1P50",
+    "title": "Introduction to Data Science",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT1P98",
+    "title": "Practical Statistics",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [
+        [
+          "MATH1P97",
+          "MATH1P98"
+        ]
+      ],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT1P99",
+    "title": "Applied Statistics for Life Sciences",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT2P81",
+    "title": "Probability",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT2P82",
+    "title": "or permission of the instructor",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT2P98",
+    "title": "Applied Statistics",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT3P81",
+    "title": "Experimental Design",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT3P82",
+    "title": "Regression Analysis",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT3P85",
+    "title": "Mathematical Statistics II",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT3P86",
+    "title": "Applied Multivariate Statistics",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT4F90",
+    "title": "Honours Project",
+    "credits": 1.0,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT4P81",
+    "title": "Sampling Theory",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT4P82",
+    "title": "Nonparametric Statistics",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT4P84",
+    "title": "Topics in Stochastic Processes and Models",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT4P85",
+    "title": "Topics in Advanced Statistics",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT4P87",
+    "title": "Computational Statistics",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
+  },
+  {
+    "code": "STAT4P89",
+    "title": "Bayesian and causal Bayesian Networks",
+    "credits": 0.5,
+    "clusters": [
+      "data",
+      "math"
+    ],
+    "tags": [
+      "calendar-2024-2025",
+      "statistics"
+    ],
+    "prerequisites": {
+      "requires_all": [],
+      "requires_one_of": [],
+      "coreq": []
+    }
   }
 ]

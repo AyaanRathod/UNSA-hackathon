@@ -25,10 +25,20 @@ export default function RecommendationsPage() {
     );
   }
 
+  const explain = (item: (typeof analysis.recommendations)[0]) => item.polished_why || item.why;
+
   return (
     <section className="stack">
       <h1>Pathway Recommendations</h1>
-      <p className="meta">{analysis.disclaimer}</p>
+      <p className="meta recommendation-scope">
+        Program track:{" "}
+        <strong>{analysis.active_program_name ?? "—"}</strong>
+        {analysis.active_program_id ? (
+          <span className="meta muted"> ({analysis.active_program_id})</span>
+        ) : (
+          <span className="meta muted"> Resubmit your profile to use catalog program tracks.</span>
+        )}
+      </p>
 
       {analysis.unknown_courses.length > 0 && (
         <p className="notice">Unknown or unmapped courses: {analysis.unknown_courses.join(", ")}. These may reduce confidence.</p>
@@ -39,11 +49,33 @@ export default function RecommendationsPage() {
       ) : (
         <div className="stack">
           {analysis.recommendations.map((item) => (
-            <article className="card" key={item.course_code}>
-              <h3>
-                {item.course_code}: {item.title}
-              </h3>
-              <p className="meta">{item.why}</p>
+            <article className="card recommendation-card" key={item.course_code}>
+              <div className="recommendation-card-head">
+                <h3>
+                  {item.course_code}: {item.title}
+                </h3>
+                <span className="recommendation-credits">{item.credits != null ? `${item.credits} cr.` : ""}</span>
+              </div>
+              {(item.clusters && item.clusters.length > 0) || (item.tags && item.tags.length > 0) ? (
+                <div className="chip-row">
+                  {(item.clusters ?? []).map((c) => (
+                    <span className="chip chip-cluster" key={`c-${c}`}>
+                      {c}
+                    </span>
+                  ))}
+                  {(item.tags ?? []).map((t) => (
+                    <span className="chip chip-tag" key={`t-${t}`}>
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+              {item.track_note ? (
+                <p className="meta track-note">
+                  <span className="track-note-label">Track signal:</span> {item.track_note}
+                </p>
+              ) : null}
+              <p className="meta recommendation-rationale">{explain(item)}</p>
               <div className="hero-actions">
                 <StatusBadge value={item.label} />
                 <StatusBadge value={item.confidence_badge} />

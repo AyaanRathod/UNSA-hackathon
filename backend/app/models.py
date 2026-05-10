@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Any, Literal
 
+RankingSource = Literal["deterministic", "watsonx_rag"]
+
 from pydantic import BaseModel, Field, field_validator
 
 EnjoymentValue = Literal["liked", "neutral", "disliked"]
@@ -100,6 +102,10 @@ class StudentProfileInput(BaseModel):
     completed_courses: list[CompletedCourseInput] = Field(default_factory=list)
     goals: list[str] = Field(default_factory=list)
     program_interest: str | None = None
+    program_id: str | None = Field(
+        default=None,
+        description="Program track for filtering/boosting recommendations (GET /api/catalog/programs).",
+    )
     allowed_restriction_groups: list[str] = Field(default_factory=lambda: ["any"])
 
 
@@ -144,6 +150,11 @@ class RecommendationItem(BaseModel):
     why: str
     polished_why: str | None = None
     unmet_details: dict[str, Any] = Field(default_factory=dict)
+    credits: float = 0.5
+    clusters: list[str] = Field(default_factory=list)
+    tags: list[str] = Field(default_factory=list)
+    track_note: str | None = None
+    evidence_snippets: list[str] = Field(default_factory=list)
 
 
 class CareerMatchItem(BaseModel):
@@ -164,6 +175,16 @@ class AnalyzeProfileResponse(BaseModel):
     recommendations: list[RecommendationItem]
     career_matches: list[CareerMatchItem]
     disclaimer: str
+    active_program_id: str
+    active_program_name: str
+    ranking_source: RankingSource = "deterministic"
+
+
+class CatalogProgramSummary(BaseModel):
+    program_id: str
+    name: str
+    institution: str | None = None
+    calendar_year: str | None = None
 
 
 class WatsonxStatusResponse(BaseModel):
@@ -208,7 +229,7 @@ class StudyArtifactRequest(BaseModel):
     session_id: str = Field(min_length=1)
     artifact_type: StudyArtifactType
     topic: str | None = None
-    top_k: int = Field(default=6, ge=1, le=20)
+    top_k: int = Field(default=18, ge=1, le=40)
 
 
 class StudyArtifactResponse(BaseModel):
@@ -222,7 +243,7 @@ class StudyArtifactResponse(BaseModel):
 class GroundedQuestionRequest(BaseModel):
     session_id: str = Field(min_length=1)
     question: str = Field(min_length=3)
-    top_k: int = Field(default=5, ge=1, le=20)
+    top_k: int = Field(default=10, ge=1, le=40)
 
 
 class GroundedAnswerResponse(BaseModel):

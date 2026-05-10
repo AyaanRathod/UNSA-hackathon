@@ -1,0 +1,9 @@
+dataset_label,department_label,chunk_id,chunk_index,text,source_file
+business_minor,business,1,1,Dataset: business_minor Program: Business and Management Minor Requirement type: program_overview. Value: Students in other disciplines can obtain a Minor in Business and Management within their degree program by completing the following courses with a minimum 60 percent overall average:,Program_-Business-and-Management-Minor-Brock-University.html
+business_minor,business,2,1,Dataset: business_minor Program: Business and Management Minor Requirement type: course_requirement. Value: ACTG 2P51,Program_-Business-and-Management-Minor-Brock-University.html
+business_minor,business,3,1,Dataset: business_minor Program: Business and Management Minor Requirement type: course_requirement. Value: ETHC 2P51,Program_-Business-and-Management-Minor-Brock-University.html
+business_minor,business,4,1,Dataset: business_minor Program: Business and Management Minor Requirement type: course_requirement. Value: FNCE 2P51,Program_-Business-and-Management-Minor-Brock-University.html
+business_minor,business,5,1,Dataset: business_minor Program: Business and Management Minor Requirement type: course_requirement. Value: ITIS 2P51,Program_-Business-and-Management-Minor-Brock-University.html
+business_minor,business,6,1,Dataset: business_minor Program: Business and Management Minor Requirement type: course_requirement. Value: MKTG 2P51,Program_-Business-and-Management-Minor-Brock-University.html
+business_minor,business,7,1,Dataset: business_minor Program: Business and Management Minor Requirement type: course_requirement. Value: OBHR 2P51,Program_-Business-and-Management-Minor-Brock-University.html
+business_minor,business,8,1,Dataset: business_minor Program: Business and Management Minor Requirement type: course_requirement. Value: OPER 2P51,Program_-Business-and-Management-Minor-Brock-University.html

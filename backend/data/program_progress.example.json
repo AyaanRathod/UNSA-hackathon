@@ -1,0 +1,43 @@
+{
+  "_comment": "Example shape for a degree-requirements view (SSC-style). Not loaded by the API yet — wire after CSV→JSON pipeline.",
+  "program_id": "brock-cs-bsc",
+  "program_title": "Bachelor of Science With Major Computer Science",
+  "calendar_note": "Illustrative structure only — decision-support, not an official audit.",
+  "years": [
+    {
+      "year_label": "Year 1",
+      "study_year_note": "0.50 Elective Credit(s) should be taken in this study year",
+      "rows": [
+        {
+          "requirement_display": "COSC 1P02",
+          "type": "single_course",
+          "course_codes": ["COSC1P02"],
+          "status": "complete",
+          "satisfied_by": [{ "code": "COSC1P02", "note": null }]
+        },
+        {
+          "requirement_display": "1.00 @ SOSC TEXT List",
+          "type": "credit_list",
+          "credits_required": 1.0,
+          "list_id": "SOSC_TEXT",
+          "status": "complete",
+          "satisfied_by": [
+            { "code": "ECON1P92", "credits": 0.5 },
+            { "code": "LABR1P95", "credits": 0.5 }
+          ]
+        },
+        {
+          "requirement_display": "1.00 Humanities (HUMA) context",
+          "type": "credit_list",
+          "credits_required": 1.0,
+          "list_id": "HUMA",
+          "status": "in_progress",
+          "satisfied_by": [
+            { "code": "CLAS1P97", "note": "Cur Reg" },
+            { "code": "CLAS2P34", "note": "Cur Reg" }
+          ]
+        }
+      ]
+    }
+  ]
+}

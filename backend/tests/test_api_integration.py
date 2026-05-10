@@ -22,6 +22,8 @@ def test_profile_analysis_contract_smoke():
     assert "recommendations" in body
     assert "career_matches" in body
     assert "disclaimer" in body
+    assert body["active_program_id"] == "pathwise-explore"
+    assert "active_program_name" in body
 
 
 def test_parse_transcript_text_contract_smoke():
@@ -147,6 +149,17 @@ def test_french_demo_contract_smoke():
     assert "original_text" in body
     assert "translated_text" in body
     assert isinstance(body["citations"], list)
+
+
+def test_catalog_programs_list_smoke():
+    response = client.get("/api/catalog/programs")
+    assert response.status_code == 200
+    rows = response.json()
+    assert isinstance(rows, list)
+    assert len(rows) >= 2
+    ids = {row["program_id"] for row in rows}
+    assert "brock-cs-bsc" in ids
+    assert "pathwise-explore" in ids
 
 
 def test_optional_tts_disabled_returns_actionable_error():

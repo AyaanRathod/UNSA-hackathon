@@ -1,9 +1,14 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { apiClient } from "@/lib/api/client";
-import type { CompletedCourseInput, EnjoymentValue, StudentProfileInput } from "@/lib/api/types";
+import type {
+  CatalogProgramSummary,
+  CompletedCourseInput,
+  EnjoymentValue,
+  StudentProfileInput,
+} from "@/lib/api/types";
 import { appStorage } from "@/lib/storage";
 
 interface CourseRow extends CompletedCourseInput {
@@ -27,17 +32,50 @@ function newRow(): CourseRow {
 const enjoymentOptions: EnjoymentValue[] = ["liked", "neutral", "disliked"];
 const supportedTranscriptTypes = ".pdf,.png,.jpg,.jpeg,.webp";
 
+const FALLBACK_PROGRAMS: CatalogProgramSummary[] = [
+  { program_id: "pathwise-explore", name: "All disciplines (eligible next courses)", institution: "Brock University", calendar_year: "2024-2025" },
+  { program_id: "brock-cs-bsc", name: "BSc Computer Science", institution: "Brock University", calendar_year: "2024-2025" },
+  {
+    program_id: "brock-business-bba",
+    name: "Bachelor of Business Administration (course universe)",
+    institution: "Brock University",
+    calendar_year: "2024-2025",
+  },
+];
+
 export default function AcademicProfilePage() {
   const router = useRouter();
   const [studentId, setStudentId] = useState("");
   const [goals, setGoals] = useState("");
   const [programInterest, setProgramInterest] = useState("");
+  const [programId, setProgramId] = useState("brock-cs-bsc");
+  const [catalogPrograms, setCatalogPrograms] = useState<CatalogProgramSummary[]>(FALLBACK_PROGRAMS);
   const [workloadPath, setWorkloadPath] = useState("");
   const [rows, setRows] = useState<CourseRow[]>([newRow()]);
   const [loading, setLoading] = useState(false);
   const [intakeBusy, setIntakeBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [intakeMessage, setIntakeMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const saved = appStorage.loadProfile();
+    if (saved?.program_id) {
+      setProgramId(saved.program_id);
+    }
+  }, []);
+
+  useEffect(() => {
+    void apiClient
+      .listCatalogPrograms()
+      .then((rows) => {
+        if (rows?.length) {
+          setCatalogPrograms(rows);
+        }
+      })
+      .catch(() => {
+        setCatalogPrograms(FALLBACK_PROGRAMS);
+      });
+  }, []);
 
   const canSubmit = useMemo(() => {
     return studentId.trim().length > 0 && rows.some((row) => row.code.trim());
@@ -134,6 +172,7 @@ export default function AcademicProfilePage() {
       completed_courses: cleanedRows,
       goals: [goals.trim(), workloadPath.trim()].filter(Boolean),
       program_interest: programInterest.trim() || undefined,
+      program_id: programId,
       allowed_restriction_groups: ["any"],
     };
 
@@ -156,21 +195,74 @@ export default function AcademicProfilePage() {
   }
 
   return (
-    <section className="stack">
+    <section className="stack profile-page">
       <h1>Academic Profile</h1>
-      <p className="meta">
-        Upload a transcript PDF (same PDF text pipeline as syllabus uploads) or a marks screenshot. Images use IBM watsonx vision
-        (set WATSONX_VISION_MODEL_ID if your main model is text-only). Then tweak confidence and enjoyment before analysis.
+      <p className="meta profile-page-lede">
+        Add your details first, optionally upload a transcript to fill course rows, then review before running analysis.
       </p>
 
       <form className="stack" onSubmit={handleSubmit}>
+        <div className="card">
+          <h3 className="profile-section-title">1 · Student info</h3>
+          <p className="meta">These fields feed pathway recommendations. Inputs expand to full width on smaller screens.</p>
+          <div className="profile-field-grid">
+            <label>
+              Student ID
+              <input
+                value={studentId}
+                onChange={(event) => setStudentId(event.target.value)}
+                required
+                placeholder="e.g. your Brock student number"
+                autoComplete="off"
+              />
+            </label>
+            <label>
+              Program track
+              <select value={programId} onChange={(event) => setProgramId(event.target.value)} required>
+                {catalogPrograms.map((p) => (
+                  <option key={p.program_id} value={p.program_id}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Focus notes (optional)
+              <input
+                value={programInterest}
+                placeholder="e.g. AI concentration, co-op, minor ideas"
+                onChange={(event) => setProgramInterest(event.target.value)}
+              />
+            </label>
+            <label className="profile-field-span-2">
+              Goals
+              <textarea
+                value={goals}
+                placeholder="e.g. AI internship, software engineering, graduate school"
+                onChange={(event) => setGoals(event.target.value)}
+                rows={3}
+              />
+            </label>
+            <label className="profile-field-span-2">
+              Workload / preferred path (optional)
+              <textarea
+                value={workloadPath}
+                placeholder="e.g. balanced workload, co-op oriented"
+                onChange={(event) => setWorkloadPath(event.target.value)}
+                rows={2}
+              />
+            </label>
+          </div>
+        </div>
+
         <div className="card intake-card">
           <div className="panel-title-row">
-            <h3>Quick Intake</h3>
-            <span className="badge warning">new</span>
+            <h3 className="profile-section-title">2 · Quick intake (optional)</h3>
+            <span className="badge warning">beta</span>
           </div>
           <p className="meta">
-            Upload an unofficial transcript PDF or marks screenshot. Pathwise extracts course + grade rows automatically.
+            Upload an unofficial transcript PDF or marks screenshot. We extract course rows automatically—you can edit everything
+            below before submitting.
           </p>
           <label className="file-input-label">
             Transcript / marks image
@@ -189,113 +281,91 @@ export default function AcademicProfilePage() {
           {intakeMessage && <p className="notice">{intakeMessage}</p>}
         </div>
 
-        <div className="card dashboard-grid">
-          <label>
-            Student ID
-            <input value={studentId} onChange={(event) => setStudentId(event.target.value)} required />
-          </label>
-          <label>
-            Program Interest
-            <input
-              value={programInterest}
-              placeholder="Computer Science BSc"
-              onChange={(event) => setProgramInterest(event.target.value)}
-            />
-          </label>
-          <label>
-            Goals
-            <input value={goals} placeholder="AI internship, software engineering" onChange={(event) => setGoals(event.target.value)} />
-          </label>
-          <label>
-            Workload / preferred path (optional)
-            <input
-              value={workloadPath}
-              placeholder="balanced workload, co-op oriented"
-              onChange={(event) => setWorkloadPath(event.target.value)}
-            />
-          </label>
-        </div>
-
         <div className="card">
-          <h3>Completed Courses</h3>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Course</th>
-                <th>Grade</th>
-                <th>Confidence</th>
-                <th>Enjoyment</th>
-                <th>Transfer / Path</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.id}>
-                  <td>
-                    <input
-                      aria-label="Course code"
-                      placeholder="COSC1P02"
-                      value={row.code}
-                      onChange={(event) => updateRow(row.id, { code: event.target.value })}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      aria-label="Grade"
-                      placeholder="84 or B+"
-                      value={String(row.grade)}
-                      onChange={(event) => updateRow(row.id, { grade: event.target.value })}
-                    />
-                  </td>
-                  <td>
-                    <input
-                      aria-label="Confidence"
-                      type="number"
-                      min={1}
-                      max={10}
-                      value={row.confidence}
-                      onChange={(event) => updateRow(row.id, { confidence: Number(event.target.value) })}
-                    />
-                  </td>
-                  <td>
-                    <select
-                      aria-label="Enjoyment"
-                      value={row.enjoyment}
-                      onChange={(event) => updateRow(row.id, { enjoyment: event.target.value as EnjoymentValue })}
-                    >
-                      {enjoymentOptions.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  </td>
-                  <td>
-                    <label>
-                      <input
-                        type="checkbox"
-                        checked={row.transfer}
-                        onChange={(event) => updateRow(row.id, { transfer: event.target.checked })}
-                      />
-                      Transfer
-                    </label>
-                    <input
-                      aria-label="Counts as"
-                      placeholder="Counts as (optional)"
-                      value={row.counts_as}
-                      onChange={(event) => updateRow(row.id, { counts_as: event.target.value })}
-                    />
-                  </td>
-                  <td>
-                    <button type="button" className="button button-secondary" onClick={() => removeRow(row.id)}>
-                      Remove
-                    </button>
-                  </td>
+          <h3 className="profile-section-title">3 · Completed courses</h3>
+          <p className="meta">Scroll horizontally on small screens if needed. Add or remove rows as needed.</p>
+          <div className="profile-table-wrap">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Grade</th>
+                  <th>Confidence</th>
+                  <th>Enjoyment</th>
+                  <th>Transfer / path</th>
+                  <th>Action</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {rows.map((row) => (
+                  <tr key={row.id}>
+                    <td>
+                      <input
+                        aria-label="Course code"
+                        placeholder="COSC1P02"
+                        value={row.code}
+                        onChange={(event) => updateRow(row.id, { code: event.target.value })}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        aria-label="Grade"
+                        placeholder="84 or B+"
+                        value={String(row.grade)}
+                        onChange={(event) => updateRow(row.id, { grade: event.target.value })}
+                      />
+                    </td>
+                    <td>
+                      <input
+                        aria-label="Confidence"
+                        type="number"
+                        min={1}
+                        max={10}
+                        value={row.confidence}
+                        onChange={(event) => updateRow(row.id, { confidence: Number(event.target.value) })}
+                      />
+                    </td>
+                    <td>
+                      <select
+                        aria-label="Enjoyment"
+                        value={row.enjoyment}
+                        onChange={(event) => updateRow(row.id, { enjoyment: event.target.value as EnjoymentValue })}
+                      >
+                        {enjoymentOptions.map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
+                      </select>
+                    </td>
+                    <td>
+                      <div className="profile-transfer-cell">
+                        <label className="profile-inline-check">
+                          <input
+                            type="checkbox"
+                            checked={row.transfer}
+                            onChange={(event) => updateRow(row.id, { transfer: event.target.checked })}
+                          />
+                          Transfer
+                        </label>
+                        <input
+                          aria-label="Counts as"
+                          placeholder="Counts as (optional)"
+                          value={row.counts_as}
+                          onChange={(event) => updateRow(row.id, { counts_as: event.target.value })}
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <button type="button" className="button button-secondary" onClick={() => removeRow(row.id)}>
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <div style={{ marginTop: "0.8rem" }}>
             <button type="button" className="button button-secondary" onClick={() => setRows((prev) => [...prev, newRow()])}>
               Add course row

@@ -13,6 +13,7 @@ from .engine import analyze_profile
 from .i18n_pipeline import detect_language, translate_for_retrieval
 from .models import (
     AnalyzeProfileResponse,
+    CatalogProgramSummary,
     TranscriptParseResponse,
     TranscriptTextParseRequest,
     FrenchDemoCitation,
@@ -27,11 +28,14 @@ from .models import (
     WatsonxStatusResponse,
     DocumentChunk,
 )
+from .calendar_rag_corpus import get_calendar_rag_chunks
 from .prompt_workflows import polish_profile_response_with_watsonx
+from .recommendation_ai_ranker import rerank_recommendations_with_calendar_rag
 from .retrieval import StudyRetriever
 from .study_service import StudyArtifactService
 from .study_store import StudySessionStore
-from .transcript_parser import parse_transcript_text
+from .transcript_llm import extract_courses_via_watsonx
+from .transcript_parser import ParsedTranscriptResult, parse_transcript_text
 from .tts_service import TtsConfigurationError, WatsonTtsService
 from .watsonx_client import WatsonxConfigurationError, create_watsonx_client
 
@@ -79,6 +83,20 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.get("/api/catalog/programs", response_model=list[CatalogProgramSummary])
+def list_catalog_programs() -> list[CatalogProgramSummary]:
+    catalog = load_catalog()
+    return [
+        CatalogProgramSummary(
+            program_id=p["program_id"],
+            name=p["name"],
+            institution=p.get("institution"),
+            calendar_year=p.get("calendar_year"),
+        )
+        for p in catalog.programs
+    ]
+
+
 @app.get("/api/watsonx/status", response_model=WatsonxStatusResponse)
 def watsonx_status() -> WatsonxStatusResponse:
     status = watsonx_client.status
@@ -94,7 +112,23 @@ def watsonx_status() -> WatsonxStatusResponse:
 @app.post("/api/profile/analyze", response_model=AnalyzeProfileResponse)
 def profile_analyze(payload: StudentProfileInput, enrich_with_llm: bool = False) -> AnalyzeProfileResponse:
     catalog = load_catalog()
-    response = analyze_profile(payload, catalog)
+    pool = 36 if settings.pathwise_ai_rank_recommendations else 10
+    response = analyze_profile(payload, catalog, recommendation_limit=pool)
+
+    if settings.pathwise_ai_rank_recommendations and watsonx_client.status.ready:
+        corpus = get_calendar_rag_chunks()
+        if corpus:
+            response = rerank_recommendations_with_calendar_rag(
+                profile=payload,
+                response=response,
+                watsonx_client=watsonx_client,
+                calendar_chunks=corpus,
+                candidate_pool=min(32, pool),
+                final_n=10,
+            )
+
+    response = response.model_copy(update={"recommendations": response.recommendations[:10]})
+
     if enrich_with_llm:
         response = polish_profile_response_with_watsonx(response, watsonx_client)
     return response
@@ -141,6 +175,13 @@ async def parse_transcript_file(file: UploadFile = File(...)) -> TranscriptParse
     warning_parts: list[str] = []
     if extraction_note:
         warning_parts.append(extraction_note)
+
+    if watsonx_client.status.ready and len(raw_text) > 400:
+        llm_courses = extract_courses_via_watsonx(raw_text, watsonx_client)
+        if llm_courses and len(llm_courses) > len(parsed.courses):
+            parsed = ParsedTranscriptResult(courses=llm_courses, unparsed_lines=parsed.unparsed_lines)
+            warning_parts.append("watsonx (Llama) JSON extraction recovered more course rows than plain-text parsing.")
+
     if not parsed.courses:
         warning_parts.append(
             "No course rows were confidently extracted. Try a clearer transcript export or use manual edits."

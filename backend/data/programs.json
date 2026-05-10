@@ -1,13 +1,20 @@
 [
   {
-    "program_id": "brock-cs-bsc",
-    "name": "BSc Computer Science (MVP Snapshot)",
+    "program_id": "pathwise-explore",
+    "name": "All disciplines (eligible next courses)",
     "institution": "Brock University",
-    "calendar_year": "2024-2025 (frozen MVP)",
-    "notes": [
-      "Frozen MVP dataset for hackathon use.",
-      "Decision-support only; verify with current Brock calendar and advising."
-    ],
+    "calendar_year": "2024-2025 catalog merge",
+    "subject_prefixes": [],
+    "required_core": [],
+    "recommended_supporting": [],
+    "sample_upper_year_options": []
+  },
+  {
+    "program_id": "brock-cs-bsc",
+    "name": "BSc Computer Science",
+    "institution": "Brock University",
+    "calendar_year": "2024-2025",
+    "subject_prefixes": ["COSC", "MATH", "STAT", "APCO"],
     "required_core": [
       "COSC1P02",
       "COSC1P03",
@@ -26,6 +33,42 @@
       "COSC4P76",
       "COSC4P80",
       "COSC4P90"
+    ]
+  },
+  {
+    "program_id": "brock-business-bba",
+    "name": "Bachelor of Business Administration (course universe)",
+    "institution": "Brock University",
+    "calendar_year": "2024-2025",
+    "subject_prefixes": [
+      "ACTG",
+      "FNCE",
+      "MGMT",
+      "MKTG",
+      "OBHR",
+      "OPER",
+      "ITIS",
+      "ENTR",
+      "ETHC"
+    ],
+    "required_core": [
+      "MGMT1P93",
+      "MGMT1P96",
+      "ACTG1P91",
+      "ACTG2P12",
+      "FNCE2P91",
+      "MKTG2P91",
+      "OBHR2P91",
+      "OPER2P91",
+      "ITIS2P91"
+    ],
+    "recommended_supporting": ["MATH1P97", "MATH1P98", "STAT1P98"],
+    "sample_upper_year_options": [
+      "FNCE3P93",
+      "MGMT4P90",
+      "MKTG3P24",
+      "ITIS3P98",
+      "OBHR3P97"
     ]
   }
 ]

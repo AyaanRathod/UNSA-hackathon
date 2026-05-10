@@ -18,6 +18,8 @@ export interface StudentProfileInput {
   completed_courses: CompletedCourseInput[];
   goals: string[];
   program_interest?: string;
+  /** Recommendation scope + ranking template (from GET /api/catalog/programs). */
+  program_id?: string;
   allowed_restriction_groups?: string[];
 }
 
@@ -35,6 +37,11 @@ export interface RecommendationItem {
   label: RecommendationLabel;
   confidence_badge: ConfidenceBadge;
   why: string;
+  credits?: number;
+  clusters?: string[];
+  tags?: string[];
+  track_note?: string | null;
+  polished_why?: string | null;
 }
 
 export interface CareerMatchItem {
@@ -54,6 +61,16 @@ export interface AnalyzeProfileResponse {
   recommendations: RecommendationItem[];
   career_matches: CareerMatchItem[];
   disclaimer: string;
+  /** Present after analysis with catalog programs API (older cached payloads may omit). */
+  active_program_id?: string;
+  active_program_name?: string;
+}
+
+export interface CatalogProgramSummary {
+  program_id: string;
+  name: string;
+  institution?: string | null;
+  calendar_year?: string | null;
 }
 
 export interface UploadedDocument {

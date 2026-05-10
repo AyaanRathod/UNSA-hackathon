@@ -26,6 +26,7 @@ class BackendSettings:
     tts_enabled: bool
     watson_tts_api_key: str | None
     watson_tts_url: str | None
+    pathwise_ai_rank_recommendations: bool
 
     @property
     def watsonx_ready(self) -> bool:
@@ -64,4 +65,5 @@ def load_settings() -> BackendSettings:
         tts_enabled=_as_bool(os.getenv("ENABLE_WATSON_TTS"), default=False),
         watson_tts_api_key=os.getenv("WATSON_TTS_API_KEY"),
         watson_tts_url=os.getenv("WATSON_TTS_URL"),
+        pathwise_ai_rank_recommendations=_as_bool(os.getenv("PATHWISE_AI_RANK_RECOMMENDATIONS"), default=False),
     )

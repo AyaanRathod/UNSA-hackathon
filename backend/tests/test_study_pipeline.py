@@ -3,6 +3,7 @@ from app.doc_understanding import ExtractedBlock
 from app.i18n_pipeline import detect_language, translate_for_retrieval
 from app.models import DocumentChunk
 from app.retrieval import StudyRetriever
+from app.study_text_utils import normalize_pdf_extract, strip_internal_chunk_markers
 
 
 class _WatsonxDisabledStub:
@@ -59,6 +60,19 @@ def test_retrieval_prefers_relevant_chunk():
     hits = retriever.search("data structures", chunks, top_k=1)
     assert hits
     assert hits[0].chunk.chunk_id == "chk_1"
+
+
+def test_normalize_pdf_extract_strips_private_use_bullets():
+    raw = "Intro \uf0b7 middle \uf0b2 end"
+    cleaned = normalize_pdf_extract(raw)
+    assert "•" in cleaned
+    assert "\uf0b7" not in cleaned
+
+
+def test_strip_internal_chunk_markers():
+    blob = "[chk_abcd12345678] (Week3.pdf, page=6, section=Page 6) Context models are useful."
+    assert "chk_" not in strip_internal_chunk_markers(blob)
+    assert "Context models" in strip_internal_chunk_markers(blob)
 
 
 def test_french_detection_and_translation_fallback_without_watsonx():

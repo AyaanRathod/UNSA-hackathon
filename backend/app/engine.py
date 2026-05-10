@@ -26,6 +26,65 @@ def _clamp(value: float, minimum: float = 0.0, maximum: float = 1.0) -> float:
     return max(minimum, min(maximum, value))
 
 
+def _subject_prefix(course_code: str) -> str:
+    code = course_code.upper().strip()
+    i = 0
+    while i < len(code) and code[i].isalpha():
+        i += 1
+    return code[:i] if i else code
+
+
+def _resolve_active_program(
+    catalog: Catalog,
+    program_id: str | None,
+) -> tuple[dict[str, Any] | None, str, str]:
+    programs = catalog.programs or []
+    if not programs:
+        return None, "pathwise-explore", "All disciplines (eligible next courses)"
+
+    by_id = {p["program_id"]: p for p in programs}
+    pid = (program_id or "pathwise-explore").strip()
+    prog = by_id.get(pid) or by_id.get("pathwise-explore") or programs[0]
+    return prog, prog["program_id"], prog["name"]
+
+
+def _course_in_program_track(course_code: str, program: dict[str, Any] | None) -> bool:
+    if program is None:
+        return True
+    prefixes = program.get("subject_prefixes") or []
+    if not prefixes:
+        return True
+    return _subject_prefix(course_code) in prefixes
+
+
+def _program_track_boost(program: dict[str, Any] | None, course_code: str) -> tuple[float, str | None]:
+    """Raise scores slightly when a course appears on the selected program template lists."""
+    if not program:
+        return 0.0, None
+    prefixes = program.get("subject_prefixes") or []
+    if not prefixes:
+        return 0.0, None
+
+    boost = 0.0
+    tags: list[str] = []
+    core = set(program.get("required_core") or [])
+    sup = set(program.get("recommended_supporting") or [])
+    upper = set(program.get("sample_upper_year_options") or [])
+
+    if course_code in core:
+        boost += 0.09
+        tags.append("program core")
+    elif course_code in sup:
+        boost += 0.05
+        tags.append("recommended supporting")
+    elif course_code in upper:
+        boost += 0.04
+        tags.append("upper-year sample")
+
+    note = "; ".join(tags) if tags else None
+    return min(boost, 0.14), note
+
+
 def normalize_student_courses(profile: StudentProfileInput) -> tuple[list[NormalizedCourseSignal], list[str]]:
     by_code: dict[str, NormalizedCourseSignal] = {}
     unknown: list[str] = []
@@ -132,6 +191,8 @@ def _score_candidate(
     completed_map: dict[str, NormalizedCourseSignal],
     cluster_strengths: dict[str, float],
     sparse_history: bool,
+    track_boost: float = 0.0,
+    track_note: str | None = None,
 ) -> tuple[float, str, ConfidenceBadge, str]:
     clusters = course.get("clusters", [])
     cluster_component = 0.0
@@ -154,7 +215,8 @@ def _score_candidate(
     dependency_component = sum(dependency_values) / len(dependency_values) if dependency_values else 0.3
     prereq_depth_penalty = 0.02 * (len(requires_all) + len(requires_one_of))
 
-    score = _clamp((cluster_component * 0.65) + (dependency_component * 0.35) - prereq_depth_penalty)
+    base = _clamp((cluster_component * 0.65) + (dependency_component * 0.35) - prereq_depth_penalty)
+    score = _clamp(base + track_boost)
     score = round(score, 4)
 
     if not prereq_result.eligible:
@@ -177,6 +239,8 @@ def _score_candidate(
         confidence_badge = "low"
 
     rationale = f"Cluster fit={cluster_component:.2f}, dependency readiness={dependency_component:.2f}"
+    if track_note:
+        rationale += f", track={track_note}"
     if prereq_result.reason:
         rationale += f", status={prereq_result.reason}"
 
@@ -245,7 +309,12 @@ def _career_matches(
     return matches[:5]
 
 
-def analyze_profile(profile: StudentProfileInput, catalog: Catalog) -> AnalyzeProfileResponse:
+def analyze_profile(
+    profile: StudentProfileInput,
+    catalog: Catalog,
+    *,
+    recommendation_limit: int = 10,
+) -> AnalyzeProfileResponse:
     course_index = {course["code"]: course for course in catalog.courses}
     normalized_courses, transfer_unknowns = normalize_student_courses(profile)
     completed_map = {row.code: row for row in normalized_courses}
@@ -257,6 +326,11 @@ def analyze_profile(profile: StudentProfileInput, catalog: Catalog) -> AnalyzePr
     cluster_strengths = _compute_cluster_strengths(normalized_courses, course_index)
     sparse_history = len(normalized_courses) < 3
 
+    active_program, active_program_id, active_program_name = _resolve_active_program(
+        catalog,
+        profile.program_id,
+    )
+
     recommendations: list[RecommendationItem] = []
     completed_codes = set(completed_map.keys())
 
@@ -264,22 +338,30 @@ def analyze_profile(profile: StudentProfileInput, catalog: Catalog) -> AnalyzePr
         if course["code"] in completed_codes:
             continue
 
+        if not _course_in_program_track(course["code"], active_program):
+            continue
+
         prereq_result = evaluate_prerequisites(
             course=course,
             completed_map=completed_map,
             allowed_restriction_groups=profile.allowed_restriction_groups,
         )
+
+        t_boost, t_note = _program_track_boost(active_program, course["code"])
         score, label, confidence_badge, why = _score_candidate(
             course=course,
             prereq_result=prereq_result,
             completed_map=completed_map,
             cluster_strengths=cluster_strengths,
             sparse_history=sparse_history,
+            track_boost=t_boost,
+            track_note=t_note,
         )
 
         if not prereq_result.eligible:
             continue
 
+        credits = float(course.get("credits") or 0.5)
         recommendations.append(
             RecommendationItem(
                 course_code=course["code"],
@@ -289,6 +371,10 @@ def analyze_profile(profile: StudentProfileInput, catalog: Catalog) -> AnalyzePr
                 confidence_badge=confidence_badge,
                 why=why,
                 unmet_details=prereq_result.model_dump(exclude={"course_code", "eligible"}),
+                credits=credits,
+                clusters=list(course.get("clusters") or []),
+                tags=list(course.get("tags") or []),
+                track_note=t_note,
             )
         )
 
@@ -299,15 +385,16 @@ def analyze_profile(profile: StudentProfileInput, catalog: Catalog) -> AnalyzePr
         sparse_history=sparse_history,
     )
 
+    cap = max(1, recommendation_limit)
     return AnalyzeProfileResponse(
         student_id=profile.student_id,
         unknown_courses=unknown_codes,
         cluster_strengths=cluster_strengths,
         cluster_confidence_badges=_cluster_badges(cluster_strengths, sparse_history),
-        recommendations=recommendations[:10],
+        recommendations=recommendations[:cap],
         career_matches=career_matches,
-        disclaimer=(
-            "Decision-support only; not official Brock advising or degree audit. "
-            "Dataset is a frozen MVP snapshot and must be verified against the current calendar."
-        ),
+        disclaimer="",
+        active_program_id=active_program_id,
+        active_program_name=active_program_name,
+        ranking_source="deterministic",
     )

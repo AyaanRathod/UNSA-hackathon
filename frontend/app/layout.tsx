@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import React from "react";
 import Link from "next/link";
-import { Disclaimers } from "@/components/Disclaimers";
+import { ConditionalFooter } from "@/components/ConditionalFooter";
 
 export const metadata: Metadata = {
   title: "Pathwise AI",
-  description: "Decision-support dashboard for Brock CS pathway planning and study workflow",
+  description: "Pathway planning and study workspace for Brock coursework",
 };
 
 export default function RootLayout({
@@ -22,15 +22,11 @@ export default function RootLayout({
             <Link className="brand" href="/">
               Pathwise AI
             </Link>
-            <p className="header-note">Decision-support dashboard for pathway planning and grounded study support.</p>
+            <p className="header-note">Pathway planning and grounded study tools.</p>
           </div>
         </header>
         <main>{children}</main>
-        <footer className="site-footer">
-          <div className="container">
-            <Disclaimers compact />
-          </div>
-        </footer>
+        <ConditionalFooter />
       </body>
     </html>
   );
