@@ -1,28 +1,109 @@
-# Pathwise AI
+<p align="center">
+  <img src="assets/banner.png" alt="Pathwise AI banner" width="100%">
+</p>
 
-Pathwise AI is an AI-powered student pathway engine for Brock University Computer Science students. It turns your academic history into transparent next-course recommendations, career path matches, and a grounded study workspace — all powered by IBM watsonx.
+<h1 align="center">Pathwise AI</h1>
 
-> **Disclaimer:** Pathwise AI is decision-support only and is not official Brock academic advising or a degree audit system. Always verify prerequisites, restrictions, and program requirements with official Brock resources. Course data is a frozen 2024–25 snapshot and may be incomplete or outdated.
+<p align="center">
+  <b>A student pathway engine for Brock University.</b><br>
+  Turn your transcript into prerequisite-aware course picks, career matches, and a study workspace grounded in your own notes.
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-14-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js 14">
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18">
+  <img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/FastAPI-0.110-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+  <img src="https://img.shields.io/badge/Python-3.13-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.13">
+  <img src="https://img.shields.io/badge/IBM%20watsonx-Llama%203-052FAD?style=for-the-badge&logo=ibm&logoColor=white" alt="IBM watsonx">
+  <img src="https://img.shields.io/badge/tests-25%20passing-brightgreen?style=for-the-badge&logo=pytest&logoColor=white" alt="25 tests passing">
+</p>
+
+<p align="center">
+  <a href="#demo">Demo</a> &bull;
+  <a href="#features">Features</a> &bull;
+  <a href="#tech-stack">Tech Stack</a> &bull;
+  <a href="#quick-start">Quick Start</a> &bull;
+  <a href="#api">API</a> &bull;
+  <a href="#team">Team</a>
+</p>
+
+> [!IMPORTANT]
+> Pathwise AI is decision-support only. It is not official Brock academic advising or a degree audit system. Always verify prerequisites, restrictions, and program requirements with official Brock resources. Course data is a frozen 2024-25 snapshot and may be incomplete or outdated.
 
 ---
 
-## What it does
+## Demo
 
-### Course Recommendations
-Enter your completed courses (or upload a transcript PDF/screenshot) and Pathwise checks every eligible next course against a full prerequisite graph — required courses, one-of groups, corequisites, grade minimums, and program restrictions. Each recommendation is scored using your academic cluster strengths and labeled **safe**, **stretch**, or **risky** with a **high / medium / low** confidence badge.
+All GIFs below were recorded from the app running locally **without IBM credentials**, using the sample transcript and notes in [`assets/samples/`](assets/samples/) (demo data, not a real student).
 
-### Career Path Matching
-Your coursework history is mapped onto skill clusters (systems, data science, security, software engineering) and weighted against career profiles to surface your top 5 career matches — Software Engineer, Data Analyst, ML Engineer, Security Analyst — with the specific courses that would close your gaps.
+### 1. Build a profile from a transcript PDF
+Enter a student ID and goals, drop in an unofficial transcript PDF, and Pathwise pulls out every course code and grade into an editable table. Tweak confidence and enjoyment, then generate the audit.
 
-### Grounded Study Workspace
-Upload any PDF (syllabus, lecture notes, textbook chapter) and generate five artifacts grounded in your own material:
-- **Summary** — spread-sampled across all pages
-- **Concept breakdown** — key ideas with definitions
-- **Glossary** — domain terms in context
-- **Self-test questions** — active recall from the source
-- **Study guide** — structured review outline
+<p align="center"><img src="assets/gifs/01-profile-transcript-import.gif" alt="Transcript import and profile building" width="900"></p>
 
-Ask follow-up questions and get answers with citations back to the exact page. Every output links to evidence from your upload — no hallucinated content.
+### 2. Prerequisite-aware course recommendations
+Every eligible next course is checked against the prerequisite graph and scored against your strongest coursework clusters, with a match percentage and a label (Recommended, Challenge, or Prereqs Missing).
+
+<p align="center"><img src="assets/gifs/02-degree-audit.gif" alt="Degree audit and recommendations" width="900"></p>
+
+### 3. Career matches
+Your courses are mapped onto skill clusters and weighted against career profiles, showing fit scores and the specific courses that would strengthen each path.
+
+<p align="center"><img src="assets/gifs/03-career-matches.gif" alt="Career matches" width="900"></p>
+
+### 4. Study workspace
+Upload course PDFs, then generate study material and ask questions about the document. Modes: Summary, Feynman Mode, Flashcards, Active Recall, and Blurting.
+
+<p align="center"><img src="assets/gifs/04-study-workspace.gif" alt="Upload materials and study workspace" width="900"></p>
+
+> [!NOTE]
+> Without watsonx credentials the study workspace uses its built-in deterministic fallback (extractive text from your PDF), which is what the GIF shows. With `WATSONX_API_KEY` and `WATSONX_PROJECT_ID` set, the same screens are generated by Llama 3.3 70B on IBM watsonx.
+
+---
+
+## Screenshots
+
+| Landing page | Dashboard |
+|---|---|
+| ![Landing page](assets/screenshots/landing.png) | ![Dashboard home](assets/screenshots/dashboard-home.png) |
+
+| Transcript import | Degree audit |
+|---|---|
+| ![Transcript import](assets/screenshots/profile-transcript-import.png) | ![Degree audit](assets/screenshots/degree-audit.png) |
+
+| Career matches | Upload materials |
+|---|---|
+| ![Career matches](assets/screenshots/career-matches.png) | ![Upload materials](assets/screenshots/upload-materials.png) |
+
+| Study workspace | API docs (Swagger) |
+|---|---|
+| ![Study workspace](assets/screenshots/study-workspace.png) | ![API docs](assets/screenshots/api-docs.png) |
+
+---
+
+## Features
+
+### Course recommendations
+- Enter completed courses by hand or upload a transcript (PDF parsed locally, screenshots read by a watsonx vision model).
+- A deterministic engine checks every candidate course against required courses, one-of groups, corequisites, grade minimums, and program restrictions.
+- Each pick gets a match score from your cluster strengths, grades, confidence, and enjoyment, plus a label: **Recommended** (safe), **Challenge** (stretch), or **Prereqs Missing** (risky).
+- Program tracks: BSc Computer Science, Bachelor of Business Administration, or an "All disciplines" explore mode.
+- Progress snapshot with your top academic cluster and credits completed.
+
+### Career path matching
+- Coursework is mapped onto skill clusters (for example ai, programming, data, systems).
+- Matched against four career profiles: Software Engineer, Data Analyst, Machine Learning Engineer, and Security Analyst.
+- Each match shows a fit score, a confidence badge, and the courses that would close the gap.
+
+### Study workspace
+- Upload PDFs (syllabi, notes, slides). Text is extracted locally with pypdf, or with IBM Document Understanding if configured, then chunked with page and section metadata.
+- BM25 retrieval with page-spread sampling so long PDFs are not summarized from page 1 only.
+- Five modes: Summary, Feynman Mode (concept breakdown), Flashcards (from a glossary), Active Recall (self-test), and Blurting (write what you remember, then get feedback and a score).
+- "Ask Document" for questions answered from your upload, with citation metadata (source file and page) returned by the API.
+
+### Works without API keys
+Prerequisite checking, scoring, career matching, and PDF transcript import all run with no IBM credentials. Summary, concept breakdown, self-test, and Ask Document fall back to deterministic extractive output when watsonx is not configured. Blurting feedback and transcript screenshot (image) OCR need watsonx.
 
 ---
 
@@ -30,13 +111,13 @@ Ask follow-up questions and get answers with citations back to the exact page. E
 
 | Layer | Technology |
 |---|---|
-| Frontend | Next.js 15 (App Router), TypeScript |
-| Backend | FastAPI, Python 3.13 |
-| AI / LLM | IBM watsonx (Llama 3.3 70B Instruct) |
-| Vision OCR | IBM watsonx (Llama 3.2 11B Vision Instruct) |
+| Frontend | Next.js 14 (App Router), React 18, TypeScript, react-markdown |
+| Backend | FastAPI, Pydantic, Uvicorn, Python 3.13 |
+| LLM | IBM watsonx, Llama 3.3 70B Instruct (text) |
+| Vision OCR | IBM watsonx, Llama 3.2 11B Vision Instruct (transcript screenshots) |
 | Retrieval | BM25 (rank-bm25) |
 | PDF parsing | pypdf (local), IBM Document Understanding (optional) |
-| Data | Frozen JSON — Brock 2024–25 course catalog |
+| Data | Frozen JSON from the Brock 2024-25 calendar: 325 courses (MATH, COSC, ACTG, MKTG, STAT and more), 3 program tracks, 4 career profiles |
 | Tests | pytest |
 
 ---
@@ -45,164 +126,133 @@ Ask follow-up questions and get answers with citations back to the exact page. E
 
 ```
 .
-├── frontend/          # Next.js + TypeScript app
-│   └── app/
-│       └── dashboard/
-│           ├── profile/   # Academic profile & transcript upload
-│           ├── audit/     # Course recommendations
-│           ├── careers/   # Career path matches
-│           ├── upload/    # PDF upload workspace
-│           └── study/     # Grounded study workspace
-├── backend/           # FastAPI app
+├── frontend/                  # Next.js + TypeScript app
 │   ├── app/
-│   │   ├── engine.py              # Deterministic prerequisite logic & scoring
-│   │   ├── watsonx_client.py      # IBM watsonx IAM + text/vision generation
-│   │   ├── study_service.py       # BM25 retrieval + artifact generation
-│   │   ├── doc_understanding.py   # PDF extraction (local or IBM DU)
-│   │   ├── transcript_parser.py   # Course-row extraction from OCR output
-│   │   └── main.py                # API routes
-│   └── data/
-│       ├── courses.json           # COSC + supporting courses with prereq graphs
-│       ├── programs.json          # Program tracks
-│       └── career_paths.json      # Career profiles with cluster-weight matrices
+│   │   ├── page.tsx           # Landing page
+│   │   └── dashboard/
+│   │       ├── profile/       # Academic profile and transcript upload
+│   │       ├── audit/         # Course recommendations
+│   │       ├── careers/       # Career path matches
+│   │       ├── upload/        # PDF upload
+│   │       └── study/         # Study workspace
+│   ├── components/
+│   └── lib/api/               # Typed API client
+└── backend/                   # FastAPI app
+    ├── app/
+    │   ├── main.py            # API routes
+    │   ├── engine.py          # Prerequisite logic and scoring
+    │   ├── watsonx_client.py  # IBM watsonx IAM, text and vision generation
+    │   ├── study_service.py   # BM25 retrieval and artifact generation
+    │   ├── doc_understanding.py
+    │   └── transcript_parser.py
+    ├── data/                  # courses.json, programs.json, career_paths.json
+    └── tests/
 ```
 
 ---
 
 ## Quick Start
 
-### Backend
+Tested on Linux with Python 3.13 and Node.js 24.
+
+### 1. Backend
 
 ```bash
 cd backend
 python -m venv .venv
-
-# macOS / Linux
-source .venv/bin/activate
-
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
-
+source .venv/bin/activate        # Windows: .venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 cp .env.example .env
-uvicorn app.main:app --reload
+uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Backend runs at `http://127.0.0.1:8000`. API docs at `http://127.0.0.1:8000/docs`.
+API: `http://127.0.0.1:8000` and Swagger docs at `http://127.0.0.1:8000/docs`.
 
-### Frontend
+> [!TIP]
+> No IBM account? That is fine. Either leave the placeholder values or blank out `WATSONX_API_KEY` and `WATSONX_PROJECT_ID` in `backend/.env`. The backend reports watsonx as not ready and uses its deterministic fallbacks.
+
+### 2. Frontend
 
 ```bash
 cd frontend
-cp .env.example .env.local
+echo "NEXT_PUBLIC_API_BASE_URL=http://localhost:8000" > .env.local
 npm install
 npm run dev
 ```
 
-Frontend runs at `http://localhost:3000`.
+Open `http://localhost:3000`. If you open the app at `127.0.0.1:3000` instead, set `NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000` so the origins match (otherwise you get CORS errors).
 
-Set `NEXT_PUBLIC_API_BASE_URL` in `frontend/.env.local` to match your backend URL. If you open the frontend at `http://localhost:3000`, set `NEXT_PUBLIC_API_BASE_URL=http://localhost:8000`. Mismatching origins will cause CORS errors.
+### 3. Try it
+
+1. **Academic Profile**: enter an ID, click *Next*, and upload [`assets/samples/sample_unofficial_transcript.pdf`](assets/samples/sample_unofficial_transcript.pdf).
+2. Click **Generate Degree Audit**, then open **Career Matches**.
+3. **Upload Materials**: add [`assets/samples/cosc2p03_sample_notes.pdf`](assets/samples/cosc2p03_sample_notes.pdf).
+4. **Study Workspace**: generate a summary and ask a question.
+
+### Running tests
+
+```bash
+cd backend
+python -m pytest
+```
+
+Covers prerequisite edge cases (restrictions, corequisites, grade minimums), scoring determinism, transcript parsing, the study pipeline, and API contracts.
 
 ---
 
-## IBM watsonx Setup
+## IBM watsonx Setup (optional)
 
-All deterministic features (prerequisite checking, scoring, career matching) run without IBM credentials. Set these in `backend/.env` to enable full LLM behavior:
+Set these in `backend/.env` for full LLM behaviour:
 
 ```env
 WATSONX_API_KEY=
 WATSONX_PROJECT_ID=
 WATSONX_URL=https://ca-tor.ml.cloud.ibm.com
-
-# Text generation model (recommendation rationale + study artifacts)
 WATSONX_MODEL_ID=meta-llama/llama-3-3-70b-instruct
-
-# Vision model for transcript/screenshot OCR
 WATSONX_VISION_MODEL_ID=meta-llama/llama-3-2-11b-vision-instruct
 
 # Optional: IBM Document Understanding for PDF extraction
-DOC_UNDERSTANDING_PROVIDER=local   # set to "ibm" if you have DU credentials
+DOC_UNDERSTANDING_PROVIDER=local   # "ibm" if you have DU credentials
 IBM_DU_API_KEY=
 IBM_DU_URL=
 ```
 
-Without credentials, profile analysis and study endpoints fall back to deterministic generation automatically.
-
 ---
 
-## Backend API
+## API
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `GET` | `/health` | Service health check |
+| `GET` | `/health` | Health check |
+| `GET` | `/api/catalog/programs` | Available program tracks |
 | `GET` | `/api/watsonx/status` | watsonx readiness and model IDs |
-| `POST` | `/api/profile/analyze` | Prerequisite-aware course recommendations + career matches |
-| `POST` | `/api/profile/parse-transcript` | OCR a transcript PDF or image via watsonx vision |
-| `POST` | `/api/study/ingest` | Upload and chunk a PDF into the session store |
-| `POST` | `/api/study/artifacts` | Generate grounded summary, glossary, self-test, and study guide |
-| `POST` | `/api/study/qa` | Grounded Q&A with citation metadata |
-
-### `POST /api/profile/analyze`
-
-Accepts a student profile with completed courses (grade, confidence, enjoyment) and returns:
-- Prerequisite-checked, cluster-scored course recommendations
-- `safe` / `stretch` / `risky` labels with confidence badges
-- Career path matches with fit scores
-- Optional `polished_why` and `narrative` fields when watsonx is configured
-
-### `POST /api/study/ingest`
-
-Accepts a `session_id` and a PDF file. Pipeline:
-1. Text extraction (local pypdf or IBM Document Understanding)
-2. Semantic chunking with metadata (`source_filename`, `page`, `section_title`, `chunk_id`)
-3. Per-session in-memory persistence
-
-### `POST /api/study/artifacts`
-
-Generates five grounded artifacts from session chunks using BM25 retrieval + watsonx generation. Response includes citation metadata (page, source filename) for every artifact.
+| `POST` | `/api/profile/analyze` | Prerequisite-checked recommendations and career matches |
+| `POST` | `/api/profile/parse-transcript` | Extract courses from a transcript PDF or image |
+| `POST` | `/api/profile/parse-transcript-text` | Extract courses from raw transcript text |
+| `POST` | `/api/study/ingest` | Upload and chunk a PDF into a study session |
+| `POST` | `/api/study/artifacts` | Generate summary, concept breakdown, glossary, self-test, or study guide |
+| `POST` | `/api/study/qa` | Question answering over the session with citation metadata |
+| `POST` | `/api/study/evaluate-blurt` | Score a "blurting" recall attempt against the material |
+| `GET` | `/api/i18n/french-demo` | French translation pipeline demo |
+| `POST` | `/api/study/tts` | Optional Watson Text to Speech |
 
 ---
 
-## Running Tests
+## Roadmap
 
-```bash
-cd backend
-pytest
-```
-
-Tests cover prerequisite evaluation edge cases (restrictions, corequisites, grade minimums), scoring determinism, and API contracts.
-
----
-
-## Judge Quickstart (No IBM Credentials)
-
-All core flows work without API keys.
-
-```bash
-# Terminal 1 — backend
-cd backend && python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt && cp .env.example .env
-uvicorn app.main:app --reload
-
-# Terminal 2 — frontend
-cd frontend && cp .env.example .env.local
-npm install && npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-**Demo flow:**
-1. **Profile** — enter courses manually or upload a transcript PDF → submit → review recommendations and career matches
-2. **Upload** — upload a course PDF → confirm ingestion
-3. **Study** — generate artifacts → ask a grounded question → verify citation links to source pages
-4. **API Explorer** — `http://localhost:8000/docs` for full Swagger UI
+- French language support for multilingual documents
+- Watson Text to Speech for study artifacts
+- Live Brock calendar data instead of a frozen snapshot
+- Full degree audit (remaining credits toward graduation)
+- Multi-university support
 
 ---
 
-## Coming Soon
+## Team
 
-- **French language support** — automatic French detection with watsonx translation and full retrieval provenance for multilingual documents
-- **Watson Text-to-Speech** — audio synthesis of study artifacts for hands-free active recall
-- **Live Brock calendar integration** — real-time prerequisite data instead of a frozen snapshot
-- **Full degree audit** — remaining credits toward graduation, not just next-course picks
-- **Multi-university support** — generalized course catalog schema for any institution
+| | Contributor | Contributions |
+|---|---|---|
+| <img src="https://github.com/AyaanRathod.png" width="48"> | **Ayaan Rathod** ([@AyaanRathod](https://github.com/AyaanRathod)) | Full-stack build: FastAPI backend, pathway engine, watsonx integration, study pipeline, Next.js frontend, tests |
+| <img src="https://github.com/paramp16.png" width="48"> | **Param** ([@paramp16](https://github.com/paramp16)) | Project README and documentation |
+
+<p align="center"><sub>Built at the UNSA hackathon for Brock University students.</sub></p>

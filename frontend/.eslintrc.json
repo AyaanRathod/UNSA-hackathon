@@ -1,6 +1,7 @@
 {
   "extends": ["next/core-web-vitals"],
   "rules": {
-    "react-hooks/set-state-in-effect": "off"
+    "react-hooks/set-state-in-effect": "off",
+    "react/no-unescaped-entities": "off"
   }
 }

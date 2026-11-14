@@ -52,6 +52,7 @@ export interface CareerMatchItem {
   score: number;
   confidence_badge: ConfidenceBadge;
   why: string;
+  narrative?: string | null;
   recommended_courses: string[];
 }
 
@@ -67,6 +68,8 @@ export interface AnalyzeProfileResponse {
   active_program_id?: string;
   active_program_name?: string;
   ranking_source?: RankingSource;
+  total_credits_completed?: number;
+  total_credits_required?: number;
 }
 
 export interface CatalogProgramSummary {
